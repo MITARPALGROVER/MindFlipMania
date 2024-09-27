@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    background-image: url('theme_default.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+.head {
+    font-family: "Rowdies", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    padding: 10px;
+    color: #ffb0a1;
+    text-shadow: 2px 2px 10px #701c35;
+    display: inline-block;
+  }
+  
+  header{
+      text-align: center;
+      background-color: #946599;
+      box-shadow: 1px 1px 10px black;
+      overflow: hidden;
+      
+  }
+
+  .user-profile{
+    float: right;
+    margin: 13px;
+    border-radius: 100px;
+    border: 1px solid #ffb0a1;
+    box-shadow: 2px 2px 20px #701c35;
+  }
+  
+
+  @media (max-width:800px){
+    body{
+        overflow: hidden;
+    }
+    .head{
+        font-size: 25px;
+        overflow: scroll;
+    }
+    header{
+        text-align:left;
+    }
+  }
+.options{
+    text-align: center;
+    padding-top: 15%;
+  }
+a{
+  border: 5px ;
+  text-decoration: none;
+  color: crimson;
+  padding: 8px;
+}
+#a1{
+  position: relative;
+  bottom: 70px;
+}
+#a2{
+  position: relative;
+  bottom: 35px;
+}
+#icon{
+  color: black;
+}
+span{
+  color: #151136; 
+  position: relative;
+  top: 250px;
+  left: 150px;
+}
+i{
+  color: #151136;
+  position: relative;
+  top: 235px;
+  left: 180px;
+  font-size: 40px;
+}
+    </style>
+</head>
+<body>
+     <!-- heading starts -->
+     <header>
+        <h1 class="head">Mind Flip Mania</h1>
+        <a href="#login"><img src="user-profile.png" width="30px" class="user-profile"></a>
+    </header>
+    <section class="body"></section>
+    <!-- options to be given -->
+    <div class="options">
+        <h1 id="a1"><a href="#Start">Start Game</a></h1><br>
+        <h1 id="a2"><a href="#level">Difficulty Level</a></h1><br>
+        <h1 id="a3"><a href="#reward">Rewards</a></h1>
+        
+    </div>
+    
+    <!-- icons -->
+        <span class="material-symbols-outlined" style="font-size: 50px;">
+            volume_up
+            </span>
+            <i class="fa-solid fa-info"></i>
+
+</body>
+</html>

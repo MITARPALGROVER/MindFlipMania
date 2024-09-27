@@ -1,3 +1,7 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
 body{
     background-image: url('gamebg.png');
     background-position: center;
@@ -6,3 +10,21 @@ body{
     height: 100vh;
     overflow: hidden;
 }
+
+header{
+    text-align: center;
+    background-color: #946599;
+    box-shadow: 1px 1px 10px black;
+    overflow: hidden;
+    
+}
+
+.head {
+    font-family: "Rowdies", sans-serif;
+    font-weight: 700;
+    /* font-style: normal; */
+    padding: 6px;
+    color: #ffb0a1;
+    text-shadow: 2px 2px 10px #701c35;
+    display: inline-block;
+  }
