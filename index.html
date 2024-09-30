@@ -5,46 +5,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mind Flip Mania</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://kit.fontawesome.com/1aaefc6588.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Coiny&family=Dancing+Script:wght@400..700&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Coiny&family=Dancing+Script:wght@400..700&family=Rowdies:wght@300;400;700&display=swap"
+        rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <!-- heading starts -->
+    <audio>
+        <source>
+    </audio>
     <header>
-        <h1 class="head">Mind Flip Mania</h1>
+
+        <a href="index.html">
+            <h1 class="head">Mind Flip Mania</h1>
+        </a>
         <a href="login.html"><img src="user-profile.png" width="30px" class="user-profile"></a>
-        <a href="game.html"><img src="user-profile.png" width="30px" class="user-profile"></a>
     </header>
     <section class="body"></section>
     <!-- options to be given -->
-    <div class="options">
-        <h1 ><a href="#Start" id="a1">Start Game</a></h1><br>
-        <h1 ><a href="#level" id="a2">Difficulty Level</a></h1><br>
-         <!-- <form>
-            <label for="level">Difficulty Level</label>
+    <div class="menu">
 
-            <h1 id="a1"></h1><select name="lev" id="lev">
-                <option value="lev">Difficulty Level</option>
-            <option value="lev">Easy</option>
-            <option value="lev">Medium</option>
-            <option value="lev">Hard</option></select>
-         </form></h1> -->
-        <h1 id="a3"><a href="#reward">Rewards</a></h1>
-        
+        <a href="game.html">
+            <div class="options">START</div>
+        </a>
+        <a href="#levels">
+            <div class="options">DIFFICULTY LEVEL</div>
+        </a>
+        <a href="#rewards">
+            <div class="options">REWARDS</div>
+        </a>
+
+
+
     </div>
-    
+
     <!-- icons -->
-        <span class="material-symbols-outlined" style="font-size: 50px;">
-            volume_up
-            </span>
-            <i class="fa-solid fa-info"></i>
-        
-    
+    <div class="bottom-icons">
+        <div class="buttons">
+        <button class="mute-button"><embed src="volume_on.svg" width="30px" class="button-embed"></button>
+        </div>
+        <div class="buttons">
+        <button class="mute-button"><embed src="help.svg" width="30px" class="button-embed"></button>
+        </div>
+    </div>
+
+
 </body>
 
 </html>
