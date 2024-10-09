@@ -5,7 +5,7 @@
 }
 
 body {
-    background-image: url('gamebg.png');
+    background-image: url('gamebg.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position:center;
@@ -80,7 +80,7 @@ h1 {
 
 .card-front {
     /* background-color: #ffcc00; */
-    background-image: url('logo.png');
+    background-image: url('logo.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
