@@ -11,9 +11,9 @@ body {
   background-size: cover;
   background-position: center;
   height: 100vh;
-  cursor: url('game-cursor.png'), auto;
+  cursor: url('game-cursor.png'), auto;}
 
-}
+
 .container {
     background: white;
     border-radius: 8px;
@@ -29,6 +29,8 @@ h1 {
     text-align: center;
     margin-bottom: 30px;
     color: #333;
+    margin-top: 0%;
+
 }
 
 input {
@@ -62,7 +64,7 @@ button:hover {
 
 .links {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     margin-top: 25px;
 }
 
