@@ -6,12 +6,11 @@ body {
     align-items: center;
     height: 700px;
     margin: 0;
-    background-image: url('login.jpg');
+    background-image: url('images/login.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   height: 100vh;
-  cursor: url('game-cursor.png'), auto;
 
 }
 .container {
