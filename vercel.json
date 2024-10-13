@@ -1,7 +1,5 @@
 {
     "routes": [
-      { "src": "/login", "dest": "/Login/login.html" },
-      { "src": "/game", "dest": "/game/game.html" },
       { "src": "/", "dest": "/home/index.html" }
     ]
   }
