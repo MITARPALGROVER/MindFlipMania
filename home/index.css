@@ -19,12 +19,11 @@
 }
 
 body {
-  background-image: url('theme_default.jpg');
+  background-image: url('images/theme_default.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   height: 100vh;
-  cursor: url('game-cursor.png'), auto;
 }
 
 .head {
