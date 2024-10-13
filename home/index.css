@@ -19,7 +19,7 @@
 }
 
 body {
-  background-image: url('images/theme_default.jpg');
+  background-image: url('../home/images/theme_default.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
