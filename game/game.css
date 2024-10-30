@@ -19,7 +19,13 @@ header{
     overflow: hidden;
     
 }
-
+.home {
+    float: left;
+    margin: 13px;
+    border-radius: 100px;
+    border: 1px solid #ffb0a1;
+    box-shadow: 2px 2px 20px #701c35;
+}
 .head {
     font-family: "Rowdies", sans-serif;
     font-weight: 700;
