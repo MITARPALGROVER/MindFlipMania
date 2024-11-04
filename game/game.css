@@ -6,19 +6,13 @@
 
 body {
     background-image: url('../game/images/gamebg.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position:center;
-  height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    overflow: hidden;
 }
 
-header{
-    text-align: center;
-    background-color: #946599;
-    box-shadow: 1px 1px 10px black;
-    overflow: hidden;
-    
-}
 .home {
     float: left;
     margin: 13px;
@@ -26,20 +20,42 @@ header{
     border: 1px solid #ffb0a1;
     box-shadow: 2px 2px 20px #701c35;
 }
+
 .head {
     font-family: "Rowdies", sans-serif;
     font-weight: 700;
-    /* font-style: normal; */
-    padding: 6px;
+    font-style: normal;
+    padding: 10px;
     color: #ffb0a1;
     text-shadow: 2px 2px 10px #701c35;
     display: inline-block;
-  }
-.container{
+    /* background-color: #151136; */
+    position: relative;
+
+}
+
+/* .main-head{
+    display: flex;
+    justify-content: center;
+  } */
+
+header {
+    text-align: center;
+    background-color: #946599;
+    box-shadow: 1px 1px 10px black;
+    overflow: hidden;
+
+}
+/* header img{
+    width: 40px;
+} */
+
+.container {
     display: flex;
     /* background-color: red; */
     justify-content: center;
 }
+
 .game-container {
     text-align: center;
     margin-top: 100px;
@@ -50,10 +66,10 @@ header{
     padding: 10px;
 }
 
-h1 {
+/* h1 {
     font-size: 2.5rem;
     margin-bottom: 20px;
-}
+} */
 
 .game-grid {
     display: grid;
@@ -76,7 +92,8 @@ h1 {
     /* transition: transform 0.6s; */
 }
 
-.card-front, .card-back {
+.card-front,
+.card-back {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -103,4 +120,118 @@ h1 {
     background-size: cover;
     background-position: center;
     border-radius: 10px;
+}
+
+@media (max-width:700px) {
+    .card {
+        width: 130px;
+        height: 170px;
+        /* perspective: 1000px; */
+    }
+
+    .game-grid {
+        grid-template-columns: repeat(4, 130px);
+
+        gap: 10px;
+    }
+}
+
+@media (max-width:570px) {
+    
+    .card {
+        width: 110px;
+        height: 150px;
+        /* perspective: 1000px; */
+    }
+
+    .game-grid {
+        grid-template-columns: repeat(4, 110px);
+
+        gap: 10px;
+    }
+}
+
+@media (max-width:490px) {
+    .head{
+        font-size: x-large;
+    }
+    header img{
+        width: 25px;
+    }
+    .card {
+        width: 90px;
+        height: 120px;
+        /* perspective: 1000px; */
+    }
+
+    .game-grid {
+        grid-template-columns: repeat(4, 90px);
+
+        gap: 10px;
+    }
+}
+
+@media (max-width:440px) {
+    .card {
+        width: 90px;
+        height: 120px;
+        /* perspective: 1000px; */
+    }
+
+    .game-grid {
+        grid-template-columns: repeat(4, 90px);
+
+        gap: 10px;
+    }
+}
+
+@media (max-width:411px) {
+    body{
+        overflow: hidden;
+    }
+    .card {
+        width: 75px;
+        height: 100px;
+        /* perspective: 1000px; */
+    }
+
+    .game-grid {
+        grid-template-columns: repeat(4, 77px);
+
+        gap: 10px;
+    }
+}
+
+@media (max-width:390px) {
+    body{
+        overflow: hidden;
+    }
+    .card {
+        width: 75px;
+        height: 100px;
+        /* perspective: 1000px; */
+    }
+
+    .game-grid {
+        grid-template-columns: repeat(4, 77px);
+
+        gap: 10px;
+    }
+}
+
+@media (max-width:358px) {
+    body{
+        overflow: hidden;
+    }
+    .card {
+        width: 65px;
+        height: 90px;
+        /* perspective: 1000px; */
+    }
+
+    .game-grid {
+        grid-template-columns: repeat(4, 65px);
+
+        gap: 10px;
+    }
 }
