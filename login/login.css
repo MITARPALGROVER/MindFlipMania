@@ -75,6 +75,14 @@ button:hover {
     text-decoration: underline;
 }
 
+#errorMsg
+{
+    
+color: #58151c;
+background-color: #f8d7da;
+text-align: center;
+}
+
 .password-container {
     position: relative;
 }
