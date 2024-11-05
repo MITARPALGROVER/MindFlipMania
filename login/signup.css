@@ -20,7 +20,8 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 70px;
     width: 300px;
-    height: 350px;
+    /* height: 350px; */
+    max-height: 400px;
     background-color:  #f2b8c3;
     
 }
@@ -34,7 +35,7 @@ h1 {
 }
 
 input {
-    width: 92%;
+    width: 93%;
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ccc;
@@ -76,4 +77,40 @@ button:hover {
 
 .links a:hover {
     text-decoration: underline;
+}
+
+#errorMsg
+{
+    
+color: #58151c;
+/* border: 2px solid #f1aeb5; */
+background-color: #f8d7da;
+text-align: center;
+}
+
+
+.password-container {
+    position: relative;
+}
+
+.password-container input {
+    width: 100%; 
+    /* padding-right: 4px;  */
+    box-sizing: border-box; 
+}
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.toggle-password i {
+    font-size: 1.2em;
+    color: #7e7a7a;
 }

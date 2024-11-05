@@ -1,34 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link rel="stylesheet" href="../login/signup.css">
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <script src="https://kit.fontawesome.com/1aaefc6588.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link
-        href="https://fonts.googleapis.com/css2?family=Coiny&family=Dancing+Script:wght@400..700&family=Rowdies:wght@300;400;700&display=swap"
-        rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
+    href="https://fonts.googleapis.com/css2?family=Coiny&family=Dancing+Script:wght@400..700&family=Rowdies:wght@300;400;700&display=swap"
+    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
+    <script src="../login/signup.js" defer></script>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" href="../login/signup.css">
+
 </head>
+
 <body>
     <div class="container">
         <form class="login-form">
             <h1>Welcome</h1>
-            <input type="text" placeholder="Name" id="name">
-            <input type="text" placeholder="Email id" id="mail">
-            <input type="password" placeholder="Enter Your Password" id="pass">
-            <input type="password" placeholder="Confirm Your Password" id="pass">
-            <button type="submit">Signup</button>
+            <input type="text" placeholder="Username" id="username" required>
+            <input type="email" placeholder="Email id" id="email" required>
+            <!-- <input type="password" placeholder="Enter Your Password" id="password" required>
+            <input type="password" placeholder="Confirm Your Password" id="confirmPassword" required> -->
+            <div class="password-container">
+                <input type="password" placeholder="Enter Your Password" id="password" required>
+                <span class="toggle-password" onclick="togglePasswordVisibility('password')">
+                    <i class="fa fa-eye" id="togglepasswordIcon"></i>
+                </span>
+            </div>
+            <div class="password-container">
+                <input type="password" placeholder="Confirm Your Password" id="confirmPassword" required>
+                <span class="toggle-password" onclick="togglePasswordVisibility('confirmPassword')">
+                    <i class="fa fa-eye" id="toggleconfirmPasswordIcon"></i>
+                </span>
+            </div>
+            <div id="errorMsg"></div>
+            <button type="button" onclick="validateForm()">Signup</button>
             <div class="links">
-            Already have an account?
+                Already have an account?
                 <a href="../login/login.html">Login</a>
             </div>
         </form>
     </div>
 </body>
+
 </html>
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        .signup-form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+        }
+
+        .signup-form input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .signup-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .signup-form button:hover {
+            background-color: #45a049;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="signup-form">
+        <h2>Signup</h2>
+        <input type="text" placeholder="Username" id="username" required>
+        <input type="email" placeholder="Email id" id="email" required>
+        <input type="password" placeholder="Enter Your Password" id="password" required>
+        <input type="password" placeholder="Confirm Your Password" id="confirmPassword" required>
+        <div class="error" id="errorMsg"></div>
+        <button type="button" onclick="validateForm()">Signup</button>
+    </div>
+
+    <script>
+        function validateForm() {
+            const username = document.getElementById("username").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+            const errorMsg = document.getElementById("errorMsg");
+
+            errorMsg.style.display = "none";
+
+            if (username === "" || email === "" || password === "" || confirmPassword === "") {
+                errorMsg.textContent = "All fields are required!";
+                errorMsg.style.display = "block";
+                return;
+            }
+
+            // Email validation using regex
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                errorMsg.textContent = "Please enter a valid email address!";
+                errorMsg.style.display = "block";
+                return;
+            }
+
+            if (password.length < 8) {
+                errorMsg.textContent = "Password must be at least 8 characters long!";
+                errorMsg.style.display = "block";
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                errorMsg.textContent = "Passwords do not match!";
+                errorMsg.style.display = "block";
+                return;
+            }
+
+            alert("Signup successful!");
+            // Proceed with form submission or other actions
+        }
+    </script>
+
+</body>
+
+</html>
+
+
+</body>
+
+</html> -->
