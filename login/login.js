@@ -30,16 +30,16 @@ function validateLogin() {
     window.location.href = "../game/game.html"; // Change to your actual game page URL
 }
 function togglePasswordVisibility(inputId) {
-    const input = document.getElementById(inputId);
-    const icon = document.getElementById(`toggle${inputId}Icon`);
+    const input = document.getElementById(inputId); // Get the password input element by its ID
+    const icon = document.getElementById(`toggle${inputId}Icon`); // Get the icon element associated with the input
 
-    if (input.type === "password") {
-        input.type = "text";
-        icon.classList.remove("fa-eye");
-        icon.classList.add("fa-eye-slash");
-    } else {
-        input.type = "password";
-        icon.classList.remove("fa-eye-slash");
-        icon.classList.add("fa-eye");
+    if (input.type === "password") { // Check if the input type is password
+        input.type = "text"; // Change the input type to text to show the password
+        icon.classList.remove("fa-eye"); // Remove the eye icon class
+        icon.classList.add("fa-eye-slash"); // Add the eye-slash icon class
+    } else { // If the input type is not password
+        input.type = "password"; // Change the input type back to password to hide the password
+        icon.classList.remove("fa-eye-slash"); // Remove the eye-slash icon class
+        icon.classList.add("fa-eye"); // Add the eye icon class
     }
 }
