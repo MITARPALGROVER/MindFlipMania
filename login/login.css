@@ -6,7 +6,6 @@ body {
     align-items: center; /* Center content vertically */
     height: 700px; /* Set a fixed height */
     margin: 0; /* Remove default margin */
-    background-image: url('../login/images/login.jpg'); /* Set background image */
     background-repeat: no-repeat; /* Prevent background image from repeating */
     background-size: cover; /* Cover the entire background with the image */
     background-position: center; /* Center the background image */
