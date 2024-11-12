@@ -1,9 +1,9 @@
 @media (max-width:560px) {
-  .head{
+  .head {
     font-size: x-large;
   }
 
-  header img{
+  header img {
     width: 25px;
   }
 }
@@ -13,13 +13,18 @@
   padding: 0px;
 }
 
+
 body {
-  background-image: url('../home/images/theme_default.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   height: 100vh;
   overflow: hidden;
+  cursor: url('images/mouse-cursor.png'), auto;
+}
+
+a{
+  cursor: url('images/mouse-cursor.png'), auto;
 }
 
 .head {
@@ -51,6 +56,7 @@ header {
   border: 1px solid #ffb0a1;
   box-shadow: 2px 2px 20px #701c35;
 }
+
 .home {
   float: left;
   margin: 13px;
@@ -76,6 +82,7 @@ header {
   text-decoration: none;
   color: #ffb0a1;
   text-align: center;
+  cursor: url('images/mouse-cursor.png'), auto;
 
 
 }
@@ -84,7 +91,7 @@ header {
   font-family: "Titan One", sans-serif;
   font-weight: 400;
   font-style: normal;
-
+  cursor: url('images/mouse-cursor.png'), auto;
   margin-bottom: 20px;
   background-color: #946599;
   padding: 15px;
@@ -104,42 +111,36 @@ header {
 }
 
 .bottom-icons {
-  color: #151136;
+  display: flex;
   position: absolute;
   bottom: 5px;
   left: 60px;
   margin-left: 10px;
 }
 
+
 i {
   color: #151136;
   font-size: 40px;
 }
 
-.mute-button {
-  background-color: #946599;
-  border: none;
-  padding: 5px;
-  border-radius: 100%;
-}
 
 
-
-.buttons {
-  display: inline-flex;
-  margin-right: 20px;
-}
 
 
 .buttons:active {
   transform: scale(0.9);
 }
 
-/* .buttons{
+.buttons {
+  display: inline-flex;
+  color: #ffb0a1;
+  user-select: none;
   background-color: #946599;
   border-radius: 8px;
   padding: 5px;
   border-style: none;
+  margin-right: 20px;
   box-shadow: 1px 1px 10px black;
-
-} */
+  cursor: url('images/mouse-cursor.png'), auto;
+}

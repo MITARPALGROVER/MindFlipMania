@@ -1,122 +1,112 @@
-/* Style for the body element */
 body {
-    font-family: 'Arial', sans-serif; /* Set the font family */
-    background-color: #f0f2f5; /* Set the background color */
-    display: flex; /* Use flexbox for layout */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    height: 700px; /* Set the height */
-    margin: 0; /* Remove default margin */
-    background-image: url('../login/images/login.jpg'); /* Set background image */
-    background-repeat: no-repeat; /* Prevent background image from repeating */
-    background-size: cover; /* Cover the entire background */
-    background-position: center; /* Center the background image */
-    height: 100vh; /* Set height to 100% of the viewport height */
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 700px;
+    margin: 0;
+    background-image: url('../login/images/login.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    cursor: url('images/mouse-cursor.png'), auto;
 }
 
-/* Style for the container element */
+a{
+  cursor: url('images/mouse-cursor.png'), auto;
+}
+
 .container {
-    background: white; /* Set background color to white */
-    border-radius: 8px; /* Round the corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add a shadow */
-    padding: 70px; /* Add padding */
-    width: 300px; /* Set width */
-    max-height: 400px; /* Set maximum height */
-    background-color: #f2b8c3; /* Set background color */
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 70px;
+    width: 300px;
+    max-height: 400px;
+    background-color: #f2b8c3;
 }
 
-/* Style for the h1 element */
 h1 {
-    text-align: center; /* Center the text */
-    margin-bottom: 30px; /* Add margin below */
-    color: #333; /* Set text color */
-    margin-top: 0%; /* Remove top margin */
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+    margin-top: 0%;
 }
 
-/* Style for input elements */
 input {
-    width: 93%; /* Set width */
-    padding: 10px; /* Add padding */
-    margin: 10px 0; /* Add margin */
-    border: 1px solid #ccc; /* Set border */
-    border-radius: 0px; /* Remove border radius */
+    width: 93%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 0px;
 }
 
-/* Style for focused input elements */
 input:focus {
-    border-color: #007bff; /* Change border color on focus */
-    outline: none; /* Remove outline */
+    border-color: #007bff;
+    outline: none;
 }
 
-/* Style for button elements */
 button {
-    width: 100%; /* Set width */
-    padding: 10px; /* Add padding */
-    background-color: #007bff; /* Set background color */
-    color: white; /* Set text color */
-    border: none; /* Remove border */
-    border-radius: 0px; /* Remove border radius */
-    cursor: pointer; /* Change cursor to pointer */
-    transition: background-color 0.3s; /* Add transition effect */
-    margin-top: 15px; /* Add margin on top */
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0px;
+    cursor: url('images/mouse-cursor.png'), auto;
+    transition: background-color 0.3s;
+    margin-top: 15px;
 }
 
-/* Style for hovered button elements */
 button:hover {
-    background-color: #0056b3; /* Change background color on hover */
+    background-color: #0056b3;
 }
 
-/* Style for the links container */
 .links {
-    display: flex; /* Use flexbox for layout */
-    justify-content: space-evenly; /* Distribute space evenly */
-    margin-top: 25px; /* Add margin on top */
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 25px;
 }
 
-/* Style for link elements */
 .links a {
-    color: #007bff; /* Set text color */
-    text-decoration: none; /* Remove underline */
-    font-size: 0.9em; /* Set font size */
+    color: #007bff;
+    text-decoration: none;
+    font-size: 0.9em;
 }
 
-/* Style for hovered link elements */
 .links a:hover {
-    text-decoration: underline; /* Add underline on hover */
+    text-decoration: underline;
 }
 
-/* Style for the error message */
 #errorMsg {
-    color: #58151c; /* Set text color */
-    background-color: #f8d7da; /* Set background color */
-    text-align: center; /* Center the text */
+    color: #58151c;
+    background-color: #f8d7da;
+    text-align: center;
 }
 
-/* Style for the password container */
 .password-container {
-    position: relative; /* Set position to relative */
+    position: relative;
 }
 
-/* Style for input elements inside the password container */
 .password-container input {
-    width: 100%; /* Set width */
-    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    width: 100%;
+    box-sizing: border-box;
 }
 
-/* Style for the toggle password icon */
 .toggle-password {
-    position: absolute; /* Set position to absolute */
-    top: 50%; /* Center vertically */
-    right: 10px; /* Position from the right */
-    transform: translateY(-50%); /* Adjust vertical position */
-    cursor: pointer; /* Change cursor to pointer */
-    display: flex; /* Use flexbox for layout */
-    align-items: center; /* Center items vertically */
-    height: 100%; /* Set height to 100% */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
 
-/* Style for the icon inside the toggle password */
 .toggle-password i {
-    font-size: 1.2em; /* Set font size */
-    color: #7e7a7a; /* Set color */
+    font-size: 1.2em;
+    color: #7e7a7a;
 }

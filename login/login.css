@@ -1,105 +1,110 @@
 body {
-    font-family: 'Arial', sans-serif; /* Set the font family for the body */
-    background-color: #f0f2f5; /* Set the background color for the body */
-    display: flex; /* Use flexbox for layout */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    height: 700px; /* Set a fixed height */
-    margin: 0; /* Remove default margin */
-    background-repeat: no-repeat; /* Prevent background image from repeating */
-    background-size: cover; /* Cover the entire background with the image */
-    background-position: center; /* Center the background image */
-    height: 100vh; /* Set height to 100% of the viewport height */
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 700px;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    cursor: url('images/mouse-cursor.png'), auto;
+}
+
+a {
+    cursor: url('images/mouse-cursor.png'), auto;
 }
 
 .container {
-    background: white; /* Set background color to white */
-    border-radius: 8px; /* Round the corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-    padding: 70px; /* Add padding inside the container */
-    width: 300px; /* Set a fixed width */
-    height: 350px; /* Set a fixed height */
-    background-color: #f2b8c3; /* Set background color */
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 70px;
+    width: 300px;
+    height: 350px;
+    background-color: #f2b8c3;
 }
 
 h1 {
-    text-align: center; /* Center align the text */
-    margin-bottom: 30px; /* Add space below the heading */
-    color: #333; /* Set text color */
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
 }
 
 input {
-    width: 93%; /* Set width to 93% */
-    padding: 10px; /* Add padding inside the input */
-    margin: 10px 0; /* Add margin above and below the input */
-    border: 1px solid #ccc; /* Set border color and width */
-    border-radius: 0px; /* Remove border radius */
+    width: 93%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 0px;
 }
 
 input:focus {
-    border-color: #007bff; /* Change border color on focus */
-    outline: none; /* Remove default outline */
+    border-color: #007bff;
+    outline: none;
 }
 
 button {
-    width: 100%; /* Set width to 100% */
-    padding: 10px; /* Add padding inside the button */
-    background-color: #007bff; /* Set background color */
-    color: white; /* Set text color */
-    border: none; /* Remove border */
-    border-radius: 0px; /* Remove border radius */
-    cursor: pointer; /* Change cursor to pointer */
-    transition: background-color 0.3s; /* Add transition effect */
-    margin-top: 15px; /* Add margin above the button */
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0px;
+    cursor: url('images/mouse-cursor.png'), auto;
+    transition: background-color 0.3s;
+    margin-top: 15px;
 }
 
 button:hover {
-    background-color: #0056b3; /* Change background color on hover */
+    background-color: #0056b3;
 }
 
 .links {
-    display: flex; /* Use flexbox for layout */
-    justify-content: space-between; /* Space out the links */
-    margin-top: 25px; /* Add margin above the links */
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
 }
 
 .links a {
-    color: #007bff; /* Set link color */
-    text-decoration: none; /* Remove underline */
-    font-size: 0.9em; /* Set font size */
+    color: #007bff;
+    text-decoration: none;
+    font-size: 0.9em;
 }
 
 .links a:hover {
-    text-decoration: underline; /* Add underline on hover */
+    text-decoration: underline;
 }
 
 #errorMsg {
-    color: #58151c; /* Set text color */
-    background-color: #f8d7da; /* Set background color */
-    text-align: center; /* Center align the text */
+    color: #58151c;
+    background-color: #f8d7da;
+    text-align: center;
 }
 
 .password-container {
-    position: relative; /* Set position to relative */
+    position: relative;
 }
 
 .password-container input {
-    width: 100%; /* Set width to 100% */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .toggle-password {
-    position: absolute; /* Set position to absolute */
-    top: 50%; /* Position at the vertical center */
-    right: 10px; /* Position 10px from the right */
-    transform: translateY(-50%); /* Adjust position to center vertically */
-    cursor: pointer; /* Change cursor to pointer */
-    display: flex; /* Use flexbox for layout */
-    align-items: center; /* Center align items */
-    height: 100%; /* Set height to 100% */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
 
 .toggle-password i {
-    font-size: 1.2em; /* Set font size */
-    color: #7e7a7a; /* Set icon color */
+    font-size: 1.2em;
+    color: #7e7a7a;
 }

@@ -9,7 +9,11 @@ body {
     background-size: cover;
     background-position: center;
     height: 100vh;
-    overflow: hidden;
+    cursor: url('images/mouse-cursor.png'), auto;
+}
+
+a{
+  cursor: url('images/mouse-cursor.png'), auto;
 }
 
 .home {

@@ -1,44 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+<head></head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title> <!-- Title of the page -->
-    <link rel="stylesheet" href="../login/login.css"> <!-- Link to the external CSS file for styling -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Link to Font Awesome for icons -->
-
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> <!-- Link to Google Fonts for Material Symbols -->
-    <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Preconnect to Google Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- Preconnect to Google Fonts with crossorigin -->
-    <script src="https://kit.fontawesome.com/1aaefc6588.js" crossorigin="anonymous"></script> <!-- Link to Font Awesome Kit for icons -->
-    <script src="../login/login.js" defer></script> <!-- Link to the external JavaScript file for functionality, loaded defer -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Coiny&family=Dancing+Script:wght@400..700&family=Rowdies:wght@300;400;700&display=swap"
-        rel="stylesheet"> <!-- Link to Google Fonts for Coiny, Dancing Script, and Rowdies -->
-    <link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet"> <!-- Link to Google Fonts for Titan One -->
+    <title>Login Page</title>
+    <link rel="stylesheet" href="../login/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://kit.fontawesome.com/1aaefc6588.js" crossorigin="anonymous"></script>
+    <script src="../login/login.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Coiny&family=Dancing+Script:wght@400..700&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
 </head>
-
-<body>
-    <div class="container"> <!-- Container for the login form -->
-        <form class="login-form"> <!-- Login form -->
-            <h1>Welcome Back!</h1> <!-- Heading for the login form -->
-            <input type="text" placeholder="Username" id="username"> <!-- Input field for username -->
-            <div class="password-container"> <!-- Container for the password field and toggle icon -->
-                <input type="password" placeholder="Password" id="password" required> <!-- Input field for password -->
-                <span class="toggle-password" onclick="togglePasswordVisibility('password')"> <!-- Span for the toggle password visibility icon -->
-                    <i class="fa fa-eye" id="togglepasswordIcon"></i> <!-- Font Awesome eye icon for toggling password visibility -->
+<body style="background-image: url('../login/images/login.webp')">
+    <div class="container">
+        <form class="login-form">
+            <h1>Welcome Back!</h1>
+            <input type="text" placeholder="Username" id="username">
+            <div class="password-container">
+                <input type="password" placeholder="Password" id="password" required>
+                <span class="toggle-password" onclick="togglePasswordVisibility('password')">
+                    <i class="fa fa-eye" id="togglepasswordIcon"></i>
                 </span>
             </div>
-            <div id="errorMsg"></div> <!-- Div for displaying error messages -->
-            <button type="button" onclick="validateLogin()">Login</button> <!-- Button to trigger login validation -->
-            <div class="links"> <!-- Container for additional links -->
-                <a href="#">Forgot Password?</a> <!-- Link for forgotten password -->
-                <a href="../login/signup.html">Create an Account</a> <!-- Link to the signup page -->
+            <div id="errorMsg"></div>
+            <button type="button" onclick="validateLogin()">Login</button>
+            <div class="links">
+                <a href="signup.html">Forgot Password?</a>
+                <a href="../login/signup.html">Create an Account</a>
             </div>
         </form>
     </div>
 </body>
-
 </html>
