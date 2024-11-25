@@ -5,28 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mind Flip Mania</title>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="../home/index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://kit.fontawesome.com/eac8da417c.js" crossorigin="anonymous"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Coiny&family=Dancing+Script:wght@400..700&family=Rowdies:wght@300;400;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Coiny&family=Dancing+Script:wght@400..700&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=volume_up,help,settings" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=volume_up,help,settings" />
     <style>
         .material-symbols-outlined {
-            font-variation-settings:
-                'FILL' 0,
-                'wght' 400,
-                'GRAD' 0,
-                'opsz' 24;
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
             font-size: 30px;
         }
     </style>
+</head>
 
 <body style="background-image: url('../home/images/theme_default.jpg');">
     <!-- heading starts -->
@@ -37,9 +30,7 @@
     <script>
         const audiofile = document.getElementById("background-audio");
 
-
         function unmute() {
-
             audiofile.muted = !audiofile.muted;
         }
     </script>
@@ -50,50 +41,67 @@
             <h1 class="head">Mind Flip Mania</h1>
         </a>
         <a href="../login/login.html"><img src="../home/images/user-profile.png" width="30px" class="user-profile"></a>
-
     </header>
     <section class="body"></section>
 
     <!-- options to be given -->
     <div class="menu">
-
-        <a href="../game/game.html">
-            <div class="options">START</div>
-        </a>
-        <a href="#levels">
-            <div class="options">DIFFICULTY LEVEL</div>
-        </a>
-        <a href="#rewards">
-            <div class="options">REWARDS</div>
-        </a>
-
-
-
+        <div class="options" onclick="openDifficultyModal()">START</div>
+        <div class="options" onclick="shop()">SHOP</div>
     </div>
+
+    <div id="difficulty-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h2>Select Difficulty Level</h2>
+            <button onclick="startGame1()">Easy</button>
+            <button onclick="startGame2()">Medium</button>
+            <button onclick="startGame3()">Hard</button>
+            <button onclick="closeDifficultyModal()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        function shop(){
+            window.location.href = `../rewards/index.html`;
+        }
+        function openDifficultyModal() {
+            document.getElementById('difficulty-modal').style.display = 'flex';
+        }
+
+        function closeDifficultyModal() {
+            document.getElementById('difficulty-modal').style.display = 'none';
+        }
+
+        // Update the startGame function to redirect with the difficulty parameter
+        function startGame1(difficulty) {
+            window.location.href = `../game/game.html`;
+            closeDifficultyModal();
+        }
+        function startGame2(difficulty) {
+            // alert(`Starting the game with ${difficulty} difficulty!`);
+            // Redirect to the game page with difficulty level as a URL parameter
+            window.location.href = `../game/medium.html`;
+            closeDifficultyModal();
+        }
+        function startGame3(difficulty) {
+            // alert(`Starting the game with ${difficulty} difficulty!`);
+            // Redirect to the game page with difficulty level as a URL parameter
+            window.location.href = `../game/hard.html`;
+            closeDifficultyModal();
+        }
+    </script>
 
     <!-- icons -->
     <div class="bottom-icons">
-        <!-- <div class="overlay"></div> -->
-        <div class="buttons" style="display: none;">
-            <span class="material-symbols-outlined">
-                settings
-            </span>
-        </div>
-        <div class="slider-button" id="slider-button"> 
+        <div class="slider-button" id="slider-button">
             <div class="buttons" onclick="unmute()">
-                <span class="material-symbols-outlined">
-                    volume_up
-                </span>
+                <span class="material-symbols-outlined">volume_up</span>
             </div>
             <div class="buttons">
-                <span class="material-symbols-outlined">
-                    help
-                </span>
+                <span class="material-symbols-outlined">help</span>
             </div>
         </div>
     </div>
-
-
 </body>
 
 </html>
