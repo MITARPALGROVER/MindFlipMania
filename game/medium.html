@@ -93,6 +93,7 @@
             </div>
         </div>
     </div>
+    <center><button class="restart-btn">Restart Game</button></center>
     <script src="../game/game.js"></script>
 </body>
 <script>
@@ -100,6 +101,7 @@ const cards = document.querySelectorAll('.card');
 let hasFlippedCard = false;
 let firstCard, secondCard;
 let lockBoard = false;
+const restartButton = document.querySelector('.restart-btn');
 
 function flipCard() {
     if (lockBoard || this === firstCard) return; // Prevent flipping the same card or multiple at once.
@@ -157,10 +159,11 @@ function resetBoard() {
         card.style.order = randomPos;
     });
 })();
-
-// Add event listener to all cards
+function restartGame() {
+    location.reload();  // This will refresh the page and reset the game state
+}
 cards.forEach(card => card.addEventListener('click', flipCard));
-
+restartButton.addEventListener('click', restartGame);
 
 </script>
 </html>

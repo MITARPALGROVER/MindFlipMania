@@ -230,3 +230,10 @@ header {
         gap: 10px;
     }
 }
+.restart-btn{
+    text-decoration: none;
+    background-color: #45305b;
+    color: #ffffff;
+    padding: 15px;
+    margin-top: 50px;
+}
