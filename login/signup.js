@@ -66,7 +66,7 @@ async function validateForm() {
       }
   
       // Registration successful
-      alert("Signup successful! Redirecting to login page...")
+      // alert("Signup successful! Redirecting to login page...")
       window.location.href = "../login/login.html"
     } catch (error) {
       console.error("Error:", error)
