@@ -11,6 +11,85 @@
         href="https://fonts.googleapis.com/css2?family=Coiny&family=DancingScript:wght@400..700&family=Rowdies:wght@300;400;700&display=swap"
         rel="stylesheet">
     <title>Let's Play - MFM</title>
+    <style>
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+            font-family: 'Rowdies', cursive;
+            font-size: 1.2rem;
+            color: #946599;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .game-over-modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+            font-family: 'Rowdies', cursive;
+        }
+        
+        .modal-content h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .modal-content p {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .play-again-btn {
+            background-color: #ff9f43;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-family: 'Rowdies', cursive;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        .play-again-btn:hover {
+            background-color: #ff7e21;
+        }
+        .return-home {
+            background-color: #ff9f43;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-family: 'Rowdies', cursive;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        .return-home {
+            background-color: #ff7e21;
+        }
+    </style>
 </head>
 
 <body style="background-image: url('../game/images/gamebg.jpg');">
@@ -23,6 +102,12 @@
             </div>
         </a>
     </header>
+    
+    <!-- Stats Display -->
+    <div class="stats-container">
+        <div id="flip-count">Flips: 0/12</div>
+    </div>
+    
     <div class="container">
         <div class="game-container">
             <div class="game-grid">
@@ -79,77 +164,149 @@
         </div>
     </div>
     <center><button class="restart-btn">Restart Game</button></center>
-    <script src="../game/game.js"></script>
-</body>
-<script>
-const cards = document.querySelectorAll('.card');
-let hasFlippedCard = false;
-let firstCard, secondCard;
-let lockBoard = false;
-const restartButton = document.querySelector('.restart-btn');
-
-function flipCard() {
-    if (lockBoard || this === firstCard) return; // Prevent flipping the same card or multiple at once.
-
-    this.classList.add('flip'); // Add the 'flip' class to reveal the card.
-
-    if (!hasFlippedCard) {
-        // First card flipped
-        hasFlippedCard = true;
-        firstCard = this;
-    } else {
-        // Second card flipped
-        hasFlippedCard = false;
-        secondCard = this;
-
-        checkForMatch(); // Check if cards match
+    
+    <!-- Game Over Modal -->
+    <div class="game-over-modal" id="gameOverModal">
+        <div class="modal-content">
+            <h2 id="gameResultTitle">Game Over</h2>
+            <p id="finalScore">You used 0 out of 14 flips.</p>
+            <p id="resultMessage">Message will appear here</p>
+            <button class="play-again-btn" onclick="restartGame()">Play Again</button>
+            <button class="return-home" onclick="window.location.href='../home/index.html'">Return To Home</button>
+        </div>
+    </div>
+    
+    <script>
+    
+    const cards = document.querySelectorAll('.card');
+    let hasFlippedCard = false;
+    let firstCard, secondCard;
+    let lockBoard = false;
+    const restartButton = document.querySelector('.restart-btn');
+    
+    // Flip counter variables
+    let flipCount = 0;
+    const maxFlips = 14;
+    let matchedPairs = 0;
+    const totalPairs = cards.length / 2;
+    
+    // Update flip count display
+    function updateFlipCount() {
+        const flipCountDisplay = document.getElementById('flip-count');
+        flipCountDisplay.textContent = `Flips: ${flipCount}/${maxFlips}`;
     }
-}
-
-function checkForMatch() {
-    const isMatch = firstCard.dataset.symbol === secondCard.dataset.symbol;
-
-    isMatch ? disableCards() : unflipCards();
-}
-
-function disableCards() {
-    // Disable further flipping on matched cards
-    firstCard.removeEventListener('click', flipCard);
-    secondCard.removeEventListener('click', flipCard);
-
-    resetBoard(); // Reset for the next turn
-}
-
-function unflipCards() {
-    lockBoard = true; // Lock the board while cards are flipping back
-
-    setTimeout(() => {
-        firstCard.classList.remove('flip');
-        secondCard.classList.remove('flip');
-
-        resetBoard(); // Reset after flipping back
-    }, 1000); // Duration matches the CSS transition
-}
-
-function resetBoard() {
-    // Reset variables for the next pair
-    [hasFlippedCard, lockBoard] = [false, false];
-    [firstCard, secondCard] = [null, null];
-}
-
-// Shuffle cards at the start
-(function shuffle() {
-    cards.forEach(card => {
-        let randomPos = Math.floor(Math.random() * cards.length);
-        card.style.order = randomPos;
-    });
-})();
-
-function restartGame() {
-    location.reload();  // This will refresh the page and reset the game state
-}
-cards.forEach(card => card.addEventListener('click', flipCard));
-restartButton.addEventListener('click', restartGame);
-
-</script>
+    
+    function flipCard() {
+        if (lockBoard || this === firstCard || flipCount >= maxFlips) return; // Prevent flipping if max flips reached
+    
+        this.classList.add('flip'); // Add the 'flip' class to reveal the card.
+        flipCount++; // Increment flip count
+        updateFlipCount(); // Update the display
+    
+        if (!hasFlippedCard) {
+            // First card flipped
+            hasFlippedCard = true;
+            firstCard = this;
+        } else {
+            // Second card flipped
+            hasFlippedCard = false;
+            secondCard = this;
+    
+            checkForMatch(); // Check if cards match
+            
+            // Check if max flips reached after this turn
+            if (flipCount >= maxFlips) {
+                setTimeout(() => {
+                    endGame(false); // Game over due to max flips
+                }, 1000);
+            }
+        }
+    }
+    
+    function checkForMatch() {
+        const isMatch = firstCard.dataset.symbol === secondCard.dataset.symbol;
+    
+        isMatch ? disableCards() : unflipCards();
+    }
+    
+    function disableCards() {
+        // Disable further flipping on matched cards
+        firstCard.removeEventListener('click', flipCard);
+        secondCard.removeEventListener('click', flipCard);
+        
+        // Increment matched pairs
+        matchedPairs++;
+        
+        // Check if all pairs are matched
+        if (matchedPairs === totalPairs) {
+            setTimeout(() => {
+                endGame(true); // Game won
+            }, 500);
+        }
+    
+        resetBoard(); // Reset for the next turn
+    }
+    
+    function unflipCards() {
+        lockBoard = true; // Lock the board while cards are flipping back
+    
+        setTimeout(() => {
+            firstCard.classList.remove('flip');
+            secondCard.classList.remove('flip');
+    
+            resetBoard(); // Reset after flipping back
+        }, 1000); // Duration matches the CSS transition
+    }
+    
+    function resetBoard() {
+        // Reset variables for the next pair
+        [hasFlippedCard, lockBoard] = [false, false];
+        [firstCard, secondCard] = [null, null];
+    }
+    
+    // End game function
+    function endGame(isWin) {
+        const modal = document.getElementById('gameOverModal');
+        const titleElement = document.getElementById('gameResultTitle');
+        const scoreElement = document.getElementById('finalScore');
+        const messageElement = document.getElementById('resultMessage');
+        
+        // Set title based on win/lose
+        titleElement.textContent = isWin ? 'Congratulations!' : 'Game Over';
+        
+        // Display final score
+        scoreElement.textContent = `You used ${flipCount} out of ${maxFlips} flips.`;
+        
+        // Set result message
+        if (isWin) {
+            messageElement.textContent = `You scored ${totalPairs*2} MF coins!!`;
+        } else {
+            messageElement.textContent = `You scored ${matchedPairs*2} MF coins!!`;
+        }
+        
+        // Show the modal
+        modal.style.display = 'flex';
+    }
+    
+    function restartGame() {
+        location.reload();  // This will refresh the page and reset the game state
+    }
+    
+    // Shuffle cards at the start
+    (function shuffle() {
+        cards.forEach(card => {
+            let randomPos = Math.floor(Math.random() * cards.length);
+            card.style.order = randomPos;
+        });
+    })();
+    
+    // Initialize flip count display
+    updateFlipCount();
+    
+    // Add event listeners
+    cards.forEach(card => card.addEventListener('click', flipCard));
+    restartButton.addEventListener('click', restartGame);
+    
+    </script>
+</body>
 </html>
