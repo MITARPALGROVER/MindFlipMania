@@ -24,6 +24,16 @@ function getUserData() {
     return true
   }
   
+  function getApiUrl() {
+    const hostname = window.location.hostname;
+    if (hostname === 'localhost' || hostname === '127.0.0.1') {
+      return "http://localhost:5000";
+    } else {
+      return "https://mindflipmania-backend.vercel.app"; // Your deployed backend
+    }
+  }
+  
+
   // Update points in the backend
   async function updatePoints(points) {
     try {
@@ -34,7 +44,7 @@ function getUserData() {
         return
       }
   
-      const response = await fetch("http://localhost:5000/api/points/update", {
+      const response = await fetch(`${getApiUrl()}/api/points/update`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -72,7 +82,7 @@ function getUserData() {
         return 0
       }
   
-      const response = await fetch("http://localhost:5000/api/points", {
+      const response = await fetch("/api/points", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -425,7 +435,7 @@ function getUserData() {
         return
       }
   
-      const response = await fetch("http://localhost:5000/api/points/update", {
+      const response = await fetch(`${getApiUrl()}/api/points/update`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
