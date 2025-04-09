@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Mind Flip Mania</title>
+    <link rel="stylesheet" href="../profile/profile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Coiny&family=Dancing+Script:wght@400..700&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
+</head>
+
+<body style="background-image: url('../home/images/theme_default.jpg');">
+    <!-- heading -->
+    <header>
+        <a href="../home/index.html"><img src="../home/images/home-icon.png" width="30px" class="home"></a>
+        <a href="../home/index.html" class="anchor-head">
+            <div class="main-head">
+                <h1 class="head">Mind Flip Mania</h1>
+            </div>
+        </a>
+    </header>
+
+    <div class="profile-container">
+        <div class="profile-card">
+            <div class="profile-header">
+                <h2>My Profile</h2>
+            </div>
+            <div class="profile-avatar">
+                <img src="../home/images/user-profile.png" alt="Profile Avatar">
+            </div>
+            <div class="profile-info">
+                <div class="info-item">
+                    <label>Username:</label>
+                    <span id="username">Loading...</span>
+                </div>
+                <div class="info-item">
+                    <label>Email:</label>
+                    <span id="email">Loading...</span>
+                </div>
+                <div class="info-item">
+                    <label>Total Score:</label>
+                    <span id="points">Loading...</span>
+                </div>
+            </div>
+            <div class="profile-actions">
+                <button id="logoutBtn" class="btn-logout">Sign Out</button>
+                <a href="../home/index.html" class="btn-back">Back to Game</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="../profile/profile.js"></script>
+</body>
+
+</html>
