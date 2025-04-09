@@ -1,3 +1,14 @@
+function getApiUrl() {
+  const hostname = window.location.hostname;
+  if (hostname === 'localhost' || hostname === '127.0.0.1') {
+    return "http://localhost:5000";
+  } else {
+    return "https://mindflipmania-backend.vercel.app"; // Your deployed backend
+  }
+}
+
+
+
 async function validateForm() {
     const username = document.getElementById("username").value.trim()
     const email = document.getElementById("email").value.trim()
@@ -46,7 +57,7 @@ async function validateForm() {
     }
   
     try {
-      const response = await fetch("http://localhost:5000/api/auth/register", {
+      const response = await fetch(`${getApiUrl()}/api/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -78,6 +89,8 @@ async function validateForm() {
     }
   }
   
+  
+
   function togglePasswordVisibility(inputId) {
     const input = document.getElementById(inputId)
     const icon = document.getElementById(`toggle${inputId}Icon`)
