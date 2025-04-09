@@ -92,11 +92,18 @@ function getUserData() {
       dropdown.appendChild(signupLink)
     }
   }
-  
+  function getApiUrl() {
+    const hostname = window.location.hostname;
+    if (hostname === 'localhost' || hostname === '127.0.0.1') {
+      return "http://localhost:5000";
+    } else {
+      return "https://mindflipmania-backend.vercel.app"; // Your deployed backend
+    }
+  }
   // Fetch leaderboard data from the API
   async function fetchLeaderboard() {
     try {
-      const response = await fetch("http://localhost:5000/api/points/leaderboard")
+      const response = await fetch(`${getApiUrl}/api/points/leaderboard`)
   
       if (!response.ok) {
         throw new Error("Failed to fetch leaderboard data")
