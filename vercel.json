@@ -1,5 +1,14 @@
 {
-    "routes": [
-      { "src": "/", "dest": "/home/index.html" }
-    ]
-  }
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/server/server.js" },
+    { "src": "/", "dest": "/home/index.html" },
+    { "src": "/(.*)", "dest": "/$1" }
+  ],
+  "builds": [
+    { "src": "server/server.js", "use": "@vercel/node" },
+    { "src": "**/*.html", "use": "@vercel/static" },
+    { "src": "**/*.js", "use": "@vercel/static" },
+    { "src": "**/*.css", "use": "@vercel/static" },
+    { "src": "**/*.{jpg,png,gif,svg,ico,webp}", "use": "@vercel/static" }
+  ]
+}
