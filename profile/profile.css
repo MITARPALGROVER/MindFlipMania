@@ -1,0 +1,160 @@
+/* General Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    cursor: url('../game/images/mouse-cursor.png'), auto;
+    font-family: 'Arial', sans-serif;
+}
+
+a {
+    cursor: url('../game/images/mouse-cursor.png'), auto;
+    text-decoration: none;
+}
+
+.home {
+    float: left;
+    margin: 13px;
+    border-radius: 100px;
+    border: 1px solid #ffb0a1;
+    box-shadow: 2px 2px 20px #701c35;
+}
+
+.head {
+    margin: 10px;
+    font-family: "Rowdies", sans-serif;
+    font-weight: 700;
+    color: #ffb0a1;
+    text-shadow: 2px 2px 10px #701c35;
+}
+
+header {
+    text-align: center;
+    background-color: #946599;
+    box-shadow: 1px 1px 10px black;
+    overflow: hidden;
+}
+
+.anchor-head {
+    text-decoration: none;
+}
+
+/* Profile Styling */
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 70px);
+}
+
+.profile-card {
+    background-color: #f2b8c3;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    overflow: hidden;
+}
+
+.profile-header {
+    background-color: #946599;
+    color: #ffb0a1;
+    padding: 20px;
+    text-align: center;
+}
+
+.profile-header h2 {
+    font-family: "Rowdies", sans-serif;
+    text-shadow: 1px 1px 5px #701c35;
+}
+
+.profile-avatar {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.profile-avatar img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #946599;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.profile-info {
+    padding: 0 30px 20px;
+}
+
+.info-item {
+    margin: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.info-item label {
+    font-weight: bold;
+    color: #333;
+}
+
+.info-item span {
+    color: #555;
+}
+
+.profile-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 30px 30px;
+}
+
+.btn-logout, .btn-back {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.btn-logout {
+    background-color: #d9534f;
+    color: white;
+}
+
+.btn-back {
+    background-color: #5bc0de;
+    color: white;
+    display: inline-block;
+}
+
+.btn-logout:hover {
+    background-color: #c9302c;
+}
+
+.btn-back:hover {
+    background-color: #46b8da;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .profile-card {
+        width: 90%;
+    }
+    
+    .profile-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .btn-logout, .btn-back {
+        width: 100%;
+    }
+}

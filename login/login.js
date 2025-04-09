@@ -72,7 +72,7 @@ function storeToken(token) {
       )
   
       // Redirect to game
-      window.location.href = "../game/game.html"
+      window.location.href = "../home/index.html"
     } catch (error) {
       console.error("Error:", error)
       errorMsg.textContent = "Server error. Please try again later."
