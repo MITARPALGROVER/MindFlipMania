@@ -18,6 +18,23 @@
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
             font-size: 30px;
         }
+
+        .dropdown-username {
+            font-weight: bold;
+            padding: 5px 10px;
+            text-align: center;
+        }
+        
+        .dropdown-points {
+            color: #946599;
+            padding: 0 10px 5px;
+            text-align: center;
+        }
+        
+        .dropdown-divider {
+            border-top: 1px solid #ddd;
+            margin: 5px 0;
+        }
     </style>
 </head>
 
@@ -26,14 +43,6 @@
     <audio id="background-audio" autoplay muted loop>
         <source src="../home/Audio/bg-audio.mp3">
     </audio>
-
-    <script>
-        const audiofile = document.getElementById("background-audio");
-
-        function unmute() {
-            audiofile.muted = !audiofile.muted;
-        }
-    </script>
 
     <header>
         <a href="../home/index.html"><img src="../home/images/home-icon.png" width="30px" class="home"></a>
@@ -44,14 +53,11 @@
         <div class="profile-container">
             <img src="../home/images/user-profile.png" width="30px" class="user-profile" id="profileBtn">
         </div>
-        <!-- <a href="../login/login.html"><img src="../home/images/user-profile.png" width="30px" class="user-profile"></a> -->
         <div class="profile-dropdown" id="profileDropdown">
             <!-- Dropdown content will be populated by JavaScript -->
         </div>
 
         <a href="../rewards/leaderboard.html"><img src="../home/images/leader_circular.png" width="30px" class="leader-board"></a>
-        
-
     </header>
     <section class="body"></section>
 
@@ -71,37 +77,6 @@
         </div>
     </div>
 
-    <script>
-        function shop(){
-            window.location.href = `../rewards/index.html`;
-        }
-        function openDifficultyModal() {
-            document.getElementById('difficulty-modal').style.display = 'flex';
-        }
-
-        function closeDifficultyModal() {
-            document.getElementById('difficulty-modal').style.display = 'none';
-        }
-
-        // Update the startGame function to redirect with the difficulty parameter
-        function startGame1(difficulty) {
-            window.location.href = `../game/game.html`;
-            closeDifficultyModal();
-        }
-        function startGame2(difficulty) {
-            // alert(`Starting the game with ${difficulty} difficulty!`);
-            // Redirect to the game page with difficulty level as a URL parameter
-            window.location.href = `../game/medium.html`;
-            closeDifficultyModal();
-        }
-        function startGame3(difficulty) {
-            // alert(`Starting the game with ${difficulty} difficulty!`);
-            // Redirect to the game page with difficulty level as a URL parameter
-            window.location.href = `../game/hard.html`;
-            closeDifficultyModal();
-        }
-    </script>
-
     <!-- icons -->
     <div class="bottom-icons">
         <div class="slider-button" id="slider-button">
@@ -113,6 +88,14 @@
             </div>
         </div>
     </div>
+
+    <script>
+        const audiofile = document.getElementById("background-audio");
+
+        function unmute() {
+            audiofile.muted = !audiofile.muted;
+        }
+    </script>
     <script src="../home/index.js"></script>
 </body>
 

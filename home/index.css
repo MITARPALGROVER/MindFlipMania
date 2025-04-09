@@ -27,6 +27,11 @@ a{
   cursor: url('images/mouse-cursor.png'), auto;
 }
 
+button{
+  cursor: url('images/mouse-cursor.png'), auto;
+
+}
+
 .head {
   font-family: "Rowdies", sans-serif;
   font-weight: 700;
@@ -184,7 +189,6 @@ i {
   background-color: #a57399;
   margin: 5px;
   padding: 10px 20px;
-  cursor: pointer;
   box-shadow: 1px 2px black;
   cursor: url('images/mouse-cursor.png'), auto;
 }
@@ -203,12 +207,9 @@ i {
   float: right;
 }
 
-.user-profile {
-  float: right;
-  margin: 13px;
-  border-radius: 100px;
-  border: 1px solid #ffb0a1;
-  box-shadow: 2px 2px 20px #701c35;
+
+.profile-points:hover{
+  background-color: #ffb0a1;
 }
 
 .profile-dropdown {
@@ -234,7 +235,6 @@ i {
   background: none;
   border: none;
   font-size: 16px;
-  cursor: pointer;
   font-family: 'Arial', sans-serif;
 }
 
