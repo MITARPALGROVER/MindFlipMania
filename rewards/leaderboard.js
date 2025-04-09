@@ -103,7 +103,7 @@ function getUserData() {
   // Fetch leaderboard data from the API
   async function fetchLeaderboard() {
     try {
-      const response = await fetch(`${getApiUrl}/api/points/leaderboard`)
+      const response = await fetch(`${getApiUrl()}/api/points/leaderboard`)
   
       if (!response.ok) {
         throw new Error("Failed to fetch leaderboard data")
