@@ -1,5 +1,3 @@
-// Add these functions to your existing game.js file
-
 // Get user data from localStorage
 function getUserData() {
     const userData = localStorage.getItem("userData")
@@ -101,42 +99,80 @@ function getUserData() {
     }
   }
   
-  // Display user info and points
-  function displayUserInfo() {
-    const userData = getUserData()
+  // Toggle dropdown visibility
+  function toggleDropdown() {
+    document.getElementById("profileDropdown").classList.toggle("show")
+  }
   
-    if (userData) {
-      // Create or update user info display
-      let userInfoDiv = document.getElementById("userInfo")
-  
-      if (!userInfoDiv) {
-        userInfoDiv = document.createElement("div")
-        userInfoDiv.id = "userInfo"
-        document.body.appendChild(userInfoDiv)
+  // Close dropdown when clicking outside
+  window.onclick = (event) => {
+    if (!event.target.matches(".user-profile")) {
+      const dropdowns = document.getElementsByClassName("profile-dropdown")
+      for (let i = 0; i < dropdowns.length; i++) {
+        const openDropdown = dropdowns[i]
+        if (openDropdown.classList.contains("show")) {
+          openDropdown.classList.remove("show")
+        }
       }
-
-      userInfo.style.position = "absolute";
-      userInfo.style.top = "70px";
-      userInfo.style.right = "40px";
-      userInfo.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
-      userInfo.style.color = "#b88ebc";
-      userInfo.style.fontSize = "larger";
-      userInfoDiv.style.width = "250px";
-    //   userInfoDiv.style.height = "100px";
-    
+    }
+  }
   
-      userInfoDiv.innerHTML = `
-        <p><strong>Player:</strong> ${userData.username}</p>
-        <p><strong>Coins:</strong> <span id="pointsDisplay">${userData.points || 0}</span></p>
-        <button id="logoutBtn">Logout</button>
-      `
-      
-      // Add logout functionality
-      document.getElementById("logoutBtn").addEventListener("click", () => {
-        localStorage.removeItem("userToken")
-        localStorage.removeItem("userData")
-        window.location.href = "../login/login.html"
-      })
+  // Initialize dropdown content for game page
+  function initializeGameDropdown() {
+    const dropdown = document.getElementById("profileDropdown")
+    const loggedIn = isLoggedIn()
+  
+    // Clear existing content
+    dropdown.innerHTML = ""
+  
+    if (loggedIn) {
+      const userData = getUserData()
+      const username = userData ? userData.username : "User"
+  
+      // Add username display
+      const usernameDisplay = document.createElement("div")
+      usernameDisplay.className = "dropdown-username"
+      usernameDisplay.textContent = username
+      dropdown.appendChild(usernameDisplay)
+  
+      // Add points display if available
+      if (userData && userData.points !== undefined) {
+        const pointsDisplay = document.createElement("div")
+        pointsDisplay.className = "dropdown-points"
+        pointsDisplay.textContent = `${userData.points} MF Coins`
+        dropdown.appendChild(pointsDisplay)
+      }
+  
+      // Add divider
+      const divider = document.createElement("div")
+      divider.className = "dropdown-divider"
+      dropdown.appendChild(divider)
+  
+      // Add restart button
+      const restartBtn = document.createElement("button")
+      restartBtn.textContent = "Restart Game"
+      restartBtn.onclick = restartGame
+      dropdown.appendChild(restartBtn)
+  
+      // Add home button
+      const homeBtn = document.createElement("button")
+      homeBtn.textContent = "Return Home"
+      homeBtn.onclick = () => {
+        window.location.href = "../home/index.html"
+      }
+      dropdown.appendChild(homeBtn)
+    } else {
+      // Add login link
+      const loginLink = document.createElement("a")
+      loginLink.href = "../login/login.html"
+      loginLink.textContent = "Login"
+      dropdown.appendChild(loginLink)
+  
+      // Add signup link
+      const signupLink = document.createElement("a")
+      signupLink.href = "../login/signup.html"
+      signupLink.textContent = "Sign Up"
+      dropdown.appendChild(signupLink)
     }
   }
   
@@ -200,11 +236,15 @@ function getUserData() {
     // Generate the game grid
     generateGameGrid()
   
-    // Display user info
-    displayUserInfo()
+    // Initialize profile dropdown
+    const profileBtn = document.getElementById("profileBtn")
+    if (profileBtn) {
+      profileBtn.addEventListener("click", toggleDropdown)
+      initializeGameDropdown()
+    }
   
-    // Add event listener to restart button
-    document.querySelector(".restart-btn").addEventListener("click", restartGame)
+    // Fetch latest points
+    await getPoints()
   })
   
   // Generate the game grid based on difficulty
@@ -328,7 +368,8 @@ function getUserData() {
   
   // Reset board for next turn
   function resetBoard() {
-    ;[hasFlippedCard, lockBoard] = [false, false][(firstCard, secondCard)] = [null, null]
+    ;[hasFlippedCard, lockBoard] = [false, false]
+    ;[firstCard, secondCard] = [null, null]
   }
   
   // End game function
@@ -348,13 +389,22 @@ function getUserData() {
     scoreElement.textContent = `You used ${flipCount} out of ${maxFlips} flips.`
   
     // Set result message
-    messageElement.textContent = `You earned ${pointsEarned} MF coins!!`
+    messageElement.textContent = `You scored ${pointsEarned} MF coins!!`
   
     // Update points in the backend
     await updateUserPoints(pointsEarned)
   
     // Show the modal
     modal.style.display = "flex"
+  
+    // Update dropdown points display
+    const userData = getUserData()
+    if (userData) {
+      const pointsDisplay = document.querySelector(".dropdown-points")
+      if (pointsDisplay) {
+        pointsDisplay.textContent = `Points: ${userData.points}`
+      }
+    }
   }
   
   // Update user points in the backend
@@ -394,12 +444,6 @@ function getUserData() {
       userData.points = data.points
       localStorage.setItem("userData", JSON.stringify(userData))
   
-      // Update displayed points
-      const pointsDisplay = document.getElementById("pointsDisplay")
-      if (pointsDisplay) {
-        pointsDisplay.textContent = data.points
-      }
-  
       return data
     } catch (error) {
       console.error("Error updating points:", error)
@@ -410,16 +454,4 @@ function getUserData() {
   function restartGame() {
     location.reload()
   }
-  // Call these functions when the game page loads
-  // document.addEventListener("DOMContentLoaded", () => {
-  //   checkAuth()
-  //   getPoints().then(() => {
-  //     displayUserInfo()
-  //   })
-  
-  //   // Add this to your existing game logic where points are earned
-  //   // For example, after completing a level or answering correctly:
-  //   // const currentPoints = getUserData().points + newPoints;
-  //   // updatePoints(currentPoints);
-  // })
   

@@ -16,6 +16,11 @@ a {
     cursor: url('images/mouse-cursor.png'), auto;
 }
 
+button{
+    cursor: url('images/mouse-cursor.png'), auto;
+
+}
+
 .home {
     float: left;
     margin: 13px;
@@ -25,6 +30,8 @@ a {
 }
 
 .head {
+    display: inline-flex;
+    justify-content: center;
     margin: 10px;
     font-family: "Rowdies", sans-serif;
     font-weight: 700;
