@@ -1,60 +1,254 @@
+/* General Styling */
 * {
-    margin: 0%;
-    padding: 0%;
-}
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f0f2f5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 700px;
-    margin: 0;
-    background-image: url('../login/images/login.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    cursor: url('images/mouse-cursor.png'), auto;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-a{
-  cursor: url('images/mouse-cursor.png'), auto;
+body {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  font-family: "Rowdies", sans-serif;
+  cursor: url("../game/images/mouse-cursor.png"), auto;
 }
+
+a {
+  cursor: url("../game/images/mouse-cursor.png"), auto;
+  text-decoration: none;
+}
+button{
+  cursor: url("../game/images/mouse-cursor.png"), auto;
+
+}
+.home {
+  float: left;
+  margin: 13px;
+  border-radius: 100px;
+  border: 1px solid #ffb0a1;
+  box-shadow: 2px 2px 20px #701c35;
+}
+
 .head {
-    font-family: "Rowdies", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    padding: 10px;
-    color: #ffb0a1;
-    text-shadow: 2px 2px 10px #701c35;
-    display: inline-block;
-    /* background-color: #151136; */
-    /* position: relative;
-    left: 35px; */
-  
-  }
+  display: inline-flex;
+  justify-content: center;
+  margin: 10px;
+  font-family: "Rowdies", sans-serif;
+  font-weight: 700;
+  color: #ffb0a1;
+  text-shadow: 2px 2px 10px #701c35;
+}
 
 header {
-    text-align: center;
-    background-color: #946599;
-    box-shadow: 1px 1px 10px black;
-    overflow: hidden;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    height: 9%;
+  text-align: center;
+  background-color: #946599;
+  box-shadow: 1px 1px 10px black;
+  overflow: hidden;
+  position: relative;
+}
 
-}  
+.anchor-head {
+  text-decoration: none;
+}
 
+/* Profile dropdown styles */
+.profile-container {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
 
-  
-  .home {
-    float: left;
-    margin: 13px;
-    border-radius: 100px;
-    border: 1px solid #ffb0a1;
-    box-shadow: 2px 2px 20px #701c35;
+.user-profile {
+  border-radius: 50%;
+  border: 1px solid #ffb0a1;
+  box-shadow: 2px 2px 10px #701c35;
+}
+
+.profile-dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 40px;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 5px;
+  font-family: "Rowdies", sans-serif;
+}
+
+.profile-dropdown a,
+.profile-dropdown button {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-family: "Rowdies", sans-serif;
+}
+
+.profile-dropdown a:hover,
+.profile-dropdown button:hover {
+  background-color: #f1f1f1;
+}
+
+.show {
+  display: block;
+}
+
+.dropdown-username {
+  font-weight: bold;
+  padding: 5px 10px;
+  text-align: center;
+}
+
+.dropdown-points {
+  color: #946599;
+  padding: 0 10px 5px;
+  text-align: center;
+}
+
+.dropdown-divider {
+  border-top: 1px solid #ddd;
+  margin: 5px 0;
+}
+
+/* Leaderboard Styling */
+.leaderboard-container {
+  max-width: 800px;
+  margin: 30px auto;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.leaderboard-header {
+  background-color: #946599;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.leaderboard-header h2 {
+  font-size: 2rem;
+  margin-bottom: 5px;
+}
+
+.leaderboard-content {
+  padding: 20px;
+}
+
+.leaderboard-table {
+  width: 100%;
+}
+
+.leaderboard-row {
+  display: flex;
+  padding: 15px 10px;
+  border-bottom: 1px solid #eee;
+  align-items: center;
+}
+
+.header-row {
+  background-color: #f5f5f5;
+  font-weight: bold;
+  border-bottom: 2px solid #ddd;
+}
+
+.rank-column {
+  width: 15%;
+  text-align: center;
+  font-weight: bold;
+}
+
+.player-column {
+  width: 55%;
+  padding-left: 10px;
+}
+
+.points-column {
+  width: 30%;
+  text-align: right;
+  padding-right: 10px;
+  font-weight: bold;
+}
+
+/* Medal Styling */
+.medal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+  color: white;
+}
+
+.gold-medal {
+  background: linear-gradient(45deg, #ffd700, #ffa500);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.silver-medal {
+  background: linear-gradient(45deg, #c0c0c0, #a9a9a9);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.bronze-medal {
+  background: linear-gradient(45deg, #cd7f32, #8b4513);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Top 3 Player Styling */
+.gold-row {
+  background-color: rgba(255, 215, 0, 0.1);
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.silver-row {
+  background-color: rgba(192, 192, 192, 0.1);
+  font-weight: bold;
+}
+
+.bronze-row {
+  background-color: rgba(205, 127, 50, 0.1);
+  font-weight: bold;
+}
+
+/* Loading and Error Messages */
+.loading-message,
+.error-message {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+}
+
+.error-message {
+  color: #d9534f;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .leaderboard-container {
+    margin: 20px 10px;
   }
 
+  .rank-column {
+    width: 20%;
+  }
+
+  .player-column {
+    width: 50%;
+  }
+
+  .points-column {
+    width: 30%;
+  }
+}

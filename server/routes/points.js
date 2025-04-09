@@ -1,55 +1,51 @@
-const express = require('express');
-const router = express.Router();
-const User = require('../models/User');
-const { protect } = require('../middleware/auth');
+const express = require("express")
+const router = express.Router()
+const { protect } = require("../middleware/auth")
+const User = require("../models/User")
 
-// @route   PUT /api/points/update
-// @desc    Update user points
+// @route   GET api/points
+// @desc    Get current user's points
 // @access  Private
-router.put('/update', protect, async (req, res) => {
+router.get("/", protect, async (req, res) => {
   try {
-    const { points } = req.body;
-    
-    if (points === undefined) {
-      return res.status(400).json({ message: 'Points value is required' });
-    }
-
-    const user = await User.findById(req.user._id);
-    
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
-    }
-
-    user.points = points;
-    await user.save();
-
-    res.json({
-      _id: user._id,
-      username: user.username,
-      points: user.points,
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server error' });
+    const user = await User.findById(req.user.id).select("-password")
+    res.json({ points: user.points })
+  } catch (err) {
+    console.error(err.message)
+    res.status(500).send("Server Error")
   }
-});
+})
 
-// @route   GET /api/points
-// @desc    Get user points
+// @route   PUT api/points/update
+// @desc    Update user's points
 // @access  Private
-router.get('/', protect, async (req, res) => {
+router.put("/update", protect, async (req, res) => {
   try {
-    const user = await User.findById(req.user._id);
-    
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
-    }
+    const { points } = req.body
 
-    res.json({ points: user.points });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server error' });
+    // Update user's points
+    const user = await User.findByIdAndUpdate(req.user.id, { points }, { new: true }).select("-password")
+
+    res.json({ points: user.points })
+  } catch (err) {
+    console.error(err.message)
+    res.status(500).send("Server Error")
   }
-});
+})
 
-module.exports = router;
+// @route   GET api/points/leaderboard
+// @desc    Get leaderboard (all users sorted by points)
+// @access  Public
+router.get("/leaderboard", async (req, res) => {
+  try {
+    // Get all users sorted by points in descending order
+    const users = await User.find().select("username points").sort({ points: -1 }).limit(100) // Limit to top 100 users
+
+    res.json(users)
+  } catch (err) {
+    console.error(err.message)
+    res.status(500).send("Server Error")
+  }
+})
+
+module.exports = router

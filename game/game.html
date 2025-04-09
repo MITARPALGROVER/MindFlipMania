@@ -24,7 +24,7 @@
             border-radius: 10px;
             max-width: 400px;
         }
-        
+
         .game-over-modal {
             display: none;
             position: fixed;
@@ -37,7 +37,7 @@
             justify-content: center;
             align-items: center;
         }
-        
+
         .modal-content {
             background-color: white;
             padding: 20px;
@@ -46,53 +46,33 @@
             max-width: 400px;
             font-family: 'Rowdies', cursive;
         }
-        
+
         .modal-content h2 {
             color: #333;
             margin-bottom: 20px;
         }
-        
+
         .modal-content p {
             margin-bottom: 15px;
             font-size: 1.2rem;
         }
-        
-        .play-again-btn, .return-home {
+
+        .play-again-btn,
+        .return-home {
             background-color: #ff9f43;
             color: white;
             border: none;
             border-radius: 5px;
             padding: 10px 20px;
             font-family: 'Rowdies', cursive;
-            cursor: pointer;
             font-size: 1rem;
             transition: background-color 0.3s;
             margin: 5px;
         }
-        
-        .play-again-btn:hover, .return-home:hover {
+
+        .play-again-btn:hover,
+        .return-home:hover {
             background-color: #ff7e21;
-        }
-
-        #userInfo {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: rgba(242, 184, 195, 0.8);
-            padding: 10px;
-            border-radius: 5px;
-            font-family: 'Rowdies', cursive;
-            z-index: 10;
-        }
-
-        #logoutBtn {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 3px;
-            cursor: pointer;
-            font-family: 'Rowdies', cursive;
         }
 
         .difficulty-badge {
@@ -102,6 +82,71 @@
             border-radius: 5px;
             font-weight: bold;
         }
+
+        /* Profile dropdown styles */
+        .profile-container {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+        }
+
+        .user-profile {
+            border-radius: 50%;
+            border: 1px solid #ffb0a1;
+            box-shadow: 2px 2px 10px #701c35;
+        }
+
+        .profile-dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 40px;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 5px;
+            font-family: 'Rowdies', sans-serif;
+        }
+
+        .profile-dropdown a,
+        .profile-dropdown button {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-family: 'Rowdies', sans-serif;
+        }
+
+        .profile-dropdown a:hover,
+        .profile-dropdown button:hover {
+            background-color: #f1f1f1;
+        }
+
+        .show {
+            display: block;
+        }
+
+        .dropdown-username {
+            font-weight: bold;
+            padding: 5px 10px;
+            text-align: center;
+        }
+
+        .dropdown-points {
+            color: #946599;
+            padding: 0 10px 5px;
+            text-align: center;
+        }
+
+        .dropdown-divider {
+            border-top: 1px solid #ddd;
+            margin: 5px 0;
+        }
     </style>
 </head>
 
@@ -110,18 +155,23 @@
     <header>
         <a href="../home/index.html"><img src="../game/images/home-icon.png" width="30px" class="home"></a>
         <a href="../home/index.html" class="anchor-head">
-            <div class="main-head">
                 <h1 class="head">Mind Flip Mania</h1>
-            </div>
         </a>
     </header>
-    
+    <!-- Profile Icon and Dropdown -->
+    <div class="profile-container">
+        <img src="../home/images/user-profile.png" width="30px" class="user-profile" id="profileBtn">
+        <div class="profile-dropdown" id="profileDropdown">
+            <!-- Dropdown content will be populated by JavaScript -->
+        </div>
+    </div>
+
     <!-- Stats Display -->
     <div class="stats-container">
         <div id="difficulty-level"></div>
         <div id="flip-count"></div>
     </div>
-    
+
     <div class="container">
         <div class="game-container">
             <div id="game-grid" class="game-grid">
@@ -129,8 +179,7 @@
             </div>
         </div>
     </div>
-    <center><button class="restart-btn">Restart Game</button></center>
-    
+
     <!-- Game Over Modal -->
     <div class="game-over-modal" id="gameOverModal">
         <div class="modal-content">
@@ -141,7 +190,8 @@
             <button class="return-home" onclick="window.location.href='../home/index.html'">Return To Home</button>
         </div>
     </div>
-    
+
     <script src="../game/game.js"></script>
 </body>
+
 </html>
