@@ -14,17 +14,15 @@
     <style>
         .stats-container {
             display: flex;
-            justify-content: center;
-            margin: 10px 0;
+            justify-content: space-between;
+            margin: 10px auto;
             font-family: 'Rowdies', cursive;
             font-size: 1.2rem;
             color: #946599;
             background-color: rgba(0, 0, 0, 0.7);
             padding: 10px;
             border-radius: 10px;
-            max-width: 300px;
-            margin-left: auto;
-            margin-right: auto;
+            max-width: 400px;
         }
         
         .game-over-modal {
@@ -59,7 +57,7 @@
             font-size: 1.2rem;
         }
         
-        .play-again-btn {
+        .play-again-btn, .return-home {
             background-color: #ff9f43;
             color: white;
             border: none;
@@ -69,25 +67,40 @@
             cursor: pointer;
             font-size: 1rem;
             transition: background-color 0.3s;
+            margin: 5px;
         }
         
-        .play-again-btn:hover {
+        .play-again-btn:hover, .return-home:hover {
             background-color: #ff7e21;
         }
-        .return-home {
-            background-color: #ff9f43;
+
+        #userInfo {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(242, 184, 195, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            font-family: 'Rowdies', cursive;
+            z-index: 10;
+        }
+
+        #logoutBtn {
+            background-color: #007bff;
             color: white;
             border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            font-family: 'Rowdies', cursive;
+            padding: 5px 10px;
+            border-radius: 3px;
             cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s;
+            font-family: 'Rowdies', cursive;
         }
-        
-        .return-home {
-            background-color: #ff7e21;
+
+        .difficulty-badge {
+            background-color: #946599;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -105,61 +118,14 @@
     
     <!-- Stats Display -->
     <div class="stats-container">
-        <div id="flip-count">Flips: 0/14</div>
+        <div id="difficulty-level"></div>
+        <div id="flip-count"></div>
     </div>
     
     <div class="container">
         <div class="game-container">
-            <div class="game-grid">
-                <!-- Each card pair must have the same data-symbol value -->
-                <div class="card" data-symbol="A">
-                    <div class="card-inner">
-                        <div class="card-front"></div>
-                        <div class="card-back" style="background-image: url('../game/images/image1.jpg');">🙈</div>
-                    </div>
-                </div>
-                <div class="card" data-symbol="A">
-                    <div class="card-inner">
-                        <div class="card-front"></div>
-                        <div class="card-back" style="background-image: url('../game/images/image1.jpg');">🙈</div>
-                    </div>
-                </div>
-                <div class="card" data-symbol="B">
-                    <div class="card-inner">
-                        <div class="card-front"></div>
-                        <div class="card-back" style="background-image: url('../game/images/image2.jpg');">🐼</div>
-                    </div>
-                </div>
-                <div class="card" data-symbol="B">
-                    <div class="card-inner">
-                        <div class="card-front"></div>
-                        <div class="card-back" style="background-image: url('../game/images/image2.jpg');">🐼</div>
-                    </div>
-                </div>
-                <div class="card" data-symbol="C">
-                    <div class="card-inner">
-                        <div class="card-front"></div>
-                        <div class="card-back" style="background-image: url('../game/images/image3.jpg');">🦁</div>
-                    </div>
-                </div>
-                <div class="card" data-symbol="C">
-                    <div class="card-inner">
-                        <div class="card-front"></div>
-                        <div class="card-back" style="background-image: url('../game/images/image3.jpg');">🦁</div>
-                    </div>
-                </div>
-                <div class="card" data-symbol="D">
-                    <div class="card-inner">
-                        <div class="card-front"></div>
-                        <div class="card-back" style="background-image: url('../game/images/image4.jpg');">🐶</div>
-                    </div>
-                </div>
-                <div class="card" data-symbol="D">
-                    <div class="card-inner">
-                        <div class="card-front"></div>
-                        <div class="card-back" style="background-image: url('../game/images/image4.jpg');">🐶</div>
-                    </div>
-                </div>
+            <div id="game-grid" class="game-grid">
+                <!-- Cards will be generated dynamically by JavaScript -->
             </div>
         </div>
     </div>
@@ -169,144 +135,13 @@
     <div class="game-over-modal" id="gameOverModal">
         <div class="modal-content">
             <h2 id="gameResultTitle">Game Over</h2>
-            <p id="finalScore">You used 0 out of 14 flips.</p>
+            <p id="finalScore">You used 0 out of 0 flips.</p>
             <p id="resultMessage">Message will appear here</p>
             <button class="play-again-btn" onclick="restartGame()">Play Again</button>
             <button class="return-home" onclick="window.location.href='../home/index.html'">Return To Home</button>
         </div>
     </div>
     
-    <script>
-    
-    const cards = document.querySelectorAll('.card');
-    let hasFlippedCard = false;
-    let firstCard, secondCard;
-    let lockBoard = false;
-    const restartButton = document.querySelector('.restart-btn');
-    
-    // Flip counter variables
-    let flipCount = 0;
-    const maxFlips = 14;
-    let matchedPairs = 0;
-    const totalPairs = cards.length / 2;
-    
-    // Update flip count display
-    function updateFlipCount() {
-        const flipCountDisplay = document.getElementById('flip-count');
-        flipCountDisplay.textContent = `Flips: ${flipCount}/${maxFlips}`;
-    }
-    
-    function flipCard() {
-        if (lockBoard || this === firstCard || flipCount >= maxFlips) return; // Prevent flipping if max flips reached
-    
-        this.classList.add('flip'); // Add the 'flip' class to reveal the card.
-        flipCount++; // Increment flip count
-        updateFlipCount(); // Update the display
-    
-        if (!hasFlippedCard) {
-            // First card flipped
-            hasFlippedCard = true;
-            firstCard = this;
-        } else {
-            // Second card flipped
-            hasFlippedCard = false;
-            secondCard = this;
-    
-            checkForMatch(); // Check if cards match
-            
-            // Check if max flips reached after this turn
-            if (flipCount >= maxFlips) {
-                setTimeout(() => {
-                    endGame(false); // Game over due to max flips
-                }, 1000);
-            }
-        }
-    }
-    
-    function checkForMatch() {
-        const isMatch = firstCard.dataset.symbol === secondCard.dataset.symbol;
-    
-        isMatch ? disableCards() : unflipCards();
-    }
-    
-    function disableCards() {
-        // Disable further flipping on matched cards
-        firstCard.removeEventListener('click', flipCard);
-        secondCard.removeEventListener('click', flipCard);
-        
-        // Increment matched pairs
-        matchedPairs++;
-        
-        // Check if all pairs are matched
-        if (matchedPairs === totalPairs) {
-            setTimeout(() => {
-                endGame(true); // Game won
-            }, 500);
-        }
-    
-        resetBoard(); // Reset for the next turn
-    }
-    
-    function unflipCards() {
-        lockBoard = true; // Lock the board while cards are flipping back
-    
-        setTimeout(() => {
-            firstCard.classList.remove('flip');
-            secondCard.classList.remove('flip');
-    
-            resetBoard(); // Reset after flipping back
-        }, 1000); // Duration matches the CSS transition
-    }
-    
-    function resetBoard() {
-        // Reset variables for the next pair
-        [hasFlippedCard, lockBoard] = [false, false];
-        [firstCard, secondCard] = [null, null];
-    }
-    
-    // End game function
-    function endGame(isWin) {
-        const modal = document.getElementById('gameOverModal');
-        const titleElement = document.getElementById('gameResultTitle');
-        const scoreElement = document.getElementById('finalScore');
-        const messageElement = document.getElementById('resultMessage');
-        
-        // Set title based on win/lose
-        titleElement.textContent = isWin ? 'Congratulations!' : 'Game Over';
-        
-        // Display final score
-        scoreElement.textContent = `You used ${flipCount} out of ${maxFlips} flips.`;
-        
-        // Set result message
-        if (isWin) {
-            messageElement.textContent = `You scored ${totalPairs*2} MF coins!!`;
-        } else {
-            messageElement.textContent = `You scored ${matchedPairs*2} MF coins!!`;
-        }
-        
-        // Show the modal
-        modal.style.display = 'flex';
-    }
-    
-    function restartGame() {
-        location.reload();  // This will refresh the page and reset the game state
-    }
-    
-    // Shuffle cards at the start
-    (function shuffle() {
-        cards.forEach(card => {
-            let randomPos = Math.floor(Math.random() * cards.length);
-            card.style.order = randomPos;
-        });
-    })();
-    
-    // Initialize flip count display
-    updateFlipCount();
-    
-    // Add event listeners
-    cards.forEach(card => card.addEventListener('click', flipCard));
-    restartButton.addEventListener('click', restartGame);
-    
-    </script>
+    <script src="../game/game.js"></script>
 </body>
 </html>

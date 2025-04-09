@@ -116,6 +116,15 @@ header {
     transform: rotateY(180deg);
 }
 
+/* #userInfo{
+    position: absolute;
+    top: 300px;
+    right:80px;
+    background-color:rgba(0, 0, 0, 0.7);
+    color:#b88ebc;
+    font-size: larger;
+} */
+
 
 @media (max-width:700px) {
     .card {
