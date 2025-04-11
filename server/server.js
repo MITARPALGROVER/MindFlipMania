@@ -1,31 +1,38 @@
-const express = require('express');
-const dotenv = require('dotenv');
-const cors = require('cors');
-const connectDB = require('./config/db');
+const express = require("express")
+const mongoose = require("mongoose")
+const cors = require("cors")
+require("dotenv").config()
 
-// Load env vars
-dotenv.config();
+const app = express()
+const port = process.env.PORT || 5000
 
-// Connect to database
-connectDB();
- 
-const app = express();
+// middleware
+app.use(cors())
+app.use(express.json())
 
-// Middleware
-app.use(express.json());
-app.use(cors());
+// MongoDB Connection (this is important!)
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.yrf9x.mongodb.net/mindflipmania?retryWrites=true&w=majority`
 
-// Routes
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/points', require('./routes/points'));
+mongoose.connect(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => {
+  console.log("✅ Mongoose connected to MongoDB")
 
-// Default route
-app.get('/', (req, res) => {
-  res.send('API is running...');
-});
+  // Routes (place inside .then to ensure DB is connected before routes run)
+  app.use("/api/auth", require("./routes/auth"))
+  app.use("/api/points", require("./routes/points"))
+  app.use("/api/themes", require("./routes/themes"))
 
-const PORT = process.env.PORT || 5000;
+  app.get("/", (req, res) => {
+    res.send("Theme park is running")
+  })
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+  app.listen(port, () => {
+    console.log(`🚀 Theme Park is running on port ${port}`)
+  })
+})
+.catch(err => {
+  console.error("❌ MongoDB connection error:", err)
+})
