@@ -1,3 +1,10 @@
+/* CSS Variables for theming */
+:root {
+  --primary-color: #946599;
+  --text-color: #ffb0a1;
+  --button-color: #ff9f43;
+}
+
 /* General Styling */
 * {
   margin: 0;
@@ -12,22 +19,27 @@ body {
   min-height: 100vh;
   font-family: "Rowdies", sans-serif;
   cursor: url("../game/images/mouse-cursor.png"), auto;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 a {
   cursor: url("../game/images/mouse-cursor.png"), auto;
   text-decoration: none;
 }
-button{
-  cursor: url("../game/images/mouse-cursor.png"), auto;
 
+button {
+  cursor: url("../game/images/mouse-cursor.png"), auto;
 }
+
 .home {
   float: left;
   margin: 13px;
   border-radius: 100px;
-  border: 1px solid #ffb0a1;
-  box-shadow: 2px 2px 20px #701c35;
+  border: 1px solid var(--text-color);
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.5);
 }
 
 .head {
@@ -36,13 +48,13 @@ button{
   margin: 10px;
   font-family: "Rowdies", sans-serif;
   font-weight: 700;
-  color: #ffb0a1;
-  text-shadow: 2px 2px 10px #701c35;
+  color: var(--text-color);
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 header {
   text-align: center;
-  background-color: #946599;
+  background-color: var(--primary-color);
   box-shadow: 1px 1px 10px black;
   overflow: hidden;
   position: relative;
@@ -61,8 +73,8 @@ header {
 
 .user-profile {
   border-radius: 50%;
-  border: 1px solid #ffb0a1;
-  box-shadow: 2px 2px 10px #701c35;
+  border: 1px solid var(--text-color);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .profile-dropdown {
@@ -107,7 +119,7 @@ header {
 }
 
 .dropdown-points {
-  color: #946599;
+  color: var(--primary-color);
   padding: 0 10px 5px;
   text-align: center;
 }
@@ -125,11 +137,12 @@ header {
   border-radius: 15px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   overflow: hidden;
+  width: 90%;
 }
 
 .leaderboard-header {
-  background-color: #946599;
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--text-color);
   padding: 20px;
   text-align: center;
 }
@@ -222,6 +235,11 @@ header {
   font-weight: bold;
 }
 
+/* Current user highlight */
+.current-user-row {
+  background-color: rgba(var(--primary-color-rgb, 148, 101, 153), 0.1);
+}
+
 /* Loading and Error Messages */
 .loading-message,
 .error-message {
@@ -235,9 +253,34 @@ header {
 }
 
 /* Responsive Design */
+@media (max-width: 768px) {
+  .leaderboard-container {
+    margin: 20px auto;
+  }
+
+  .leaderboard-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .leaderboard-content {
+    padding: 15px;
+  }
+
+  .medal {
+    width: 25px;
+    height: 25px;
+    font-size: 0.9em;
+  }
+
+  header .head {
+    font-size: 1.5rem;
+  }
+}
+
 @media (max-width: 600px) {
   .leaderboard-container {
-    margin: 20px 10px;
+    margin: 15px auto;
+    width: 95%;
   }
 
   .rank-column {
@@ -250,5 +293,48 @@ header {
 
   .points-column {
     width: 30%;
+  }
+
+  .leaderboard-row {
+    padding: 10px 5px;
+  }
+
+  .header-row {
+    font-size: 0.9em;
+  }
+
+  header .head {
+    font-size: 1.2rem;
+  }
+
+  .home {
+    width: 25px;
+    height: 25px;
+    margin: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .leaderboard-header h2 {
+    font-size: 1.3rem;
+  }
+
+  .leaderboard-header p {
+    font-size: 0.9rem;
+  }
+
+  .rank-column {
+    width: 15%;
+    font-size: 0.9em;
+  }
+
+  .player-column {
+    width: 55%;
+    font-size: 0.9em;
+  }
+
+  .points-column {
+    width: 30%;
+    font-size: 0.9em;
   }
 }
