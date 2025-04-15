@@ -160,6 +160,8 @@ header {
   background-color: rgba(0, 0, 0, 0.8);
   justify-content: center;
   align-items: center;
+  padding: 15px;
+  box-sizing: border-box;
 }
 
 .modal-content {
@@ -168,19 +170,32 @@ header {
   border-radius: 10px;
   text-align: center;
   max-width: 400px;
-  width: 90%;
+  width: 100%;
   font-family: "Rowdies", cursive;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  margin: 0 auto;
 }
 
 .modal-content h2 {
   color: #333;
   margin-bottom: 20px;
+  font-size: 1.8rem;
 }
 
 .modal-content p {
   margin-bottom: 15px;
   font-size: 1.2rem;
+  line-height: 1.4;
 }
+
+.modal-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
 
 .play-again-btn,
 .return-home {
@@ -192,12 +207,53 @@ header {
   font-family: "Rowdies", cursive;
   font-size: 1rem;
   transition: background-color 0.3s;
-  margin: 5px;
+  flex: 1 1 auto;
+  min-width: 120px;
+  max-width: 180px;
 }
 
 .play-again-btn:hover,
 .return-home:hover {
   filter: brightness(1.1);
+}
+
+@media (max-width: 480px) {
+  .modal-content {
+    padding: 15px;
+  }
+
+  .modal-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+
+  .modal-content p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  .play-again-btn,
+  .return-home {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    min-width: 100px;
+  }
+}
+
+@media (max-width: 350px) {
+  .modal-content h2 {
+    font-size: 1.3rem;
+  }
+
+  .modal-content p {
+    font-size: 0.9rem;
+  }
+
+  .play-again-btn,
+  .return-home {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
 }
 
 .difficulty-badge {
@@ -281,7 +337,7 @@ header {
   bottom: 20px;
   left: 20px;
   display: flex;
-  gap: 10px;
+  gap: 20px;
   z-index: 50;
 }
 

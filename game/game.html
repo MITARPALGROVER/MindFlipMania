@@ -26,57 +26,6 @@
             max-width: 400px;
         }
 
-        .game-over-modal {
-            display: none;
-            position: fixed;
-            z-index: 100;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            max-width: 400px;
-            font-family: 'Rowdies', cursive;
-        }
-
-        .modal-content h2 {
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        .modal-content p {
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-        }
-
-        .play-again-btn,
-        .return-home {
-            background-color: var(--button-color);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            font-family: 'Rowdies', cursive;
-            font-size: 1rem;
-            transition: background-color 0.3s;
-            margin: 5px;
-            cursor: pointer;
-        }
-
-        .play-again-btn:hover,
-        .return-home:hover {
-            filter: brightness(1.1);
-        }
-
         .difficulty-badge {
             background-color: var(--primary-color);
             color: white;
@@ -390,7 +339,7 @@
     </div>
 
     <!-- Game Controls -->
-    <div class="game-controls"><div>
+    <div class="game-controls">
         <button class="control-button" id="settings-button">
             <span class="material-symbols-outlined">settings</span>
         </button>
@@ -400,19 +349,20 @@
         <button class="control-button" id="home-button">
             <span class="material-symbols-outlined">home</span>
         </button>
-        
     </div>
 
     <!-- Game Over Modal -->
-    <div class="game-over-modal" id="gameOverModal">
-        <div class="modal-content">
-            <h2 id="gameResultTitle">Game Over</h2>
-            <p id="finalScore">You used 0 out of 0 flips.</p>
-            <p id="resultMessage">Message will appear here</p>
+<div class="game-over-modal" id="gameOverModal">
+    <div class="modal-content">
+        <h2 id="gameResultTitle">Game Over</h2>
+        <p id="finalScore">You used 0 out of 0 flips.</p>
+        <p id="resultMessage">Message will appear here</p>
+        <div class="modal-buttons">
             <button class="play-again-btn" onclick="restartGame()">Play Again</button>
             <button class="return-home" onclick="window.location.href='../home/index.html'">Return To Home</button>
         </div>
     </div>
+</div>
 
     <script src="../home/sound-manager.js"></script>
     <script src="../game/game.js"></script>
