@@ -140,6 +140,60 @@ function toggleDropdown() {
   document.getElementById("profileDropdown").classList.toggle("show")
 }
 
+// Toggle settings panel
+function toggleSettings(show) {
+  const settingsPanel = document.getElementById("settings-panel")
+  if (show === undefined) {
+    settingsPanel.classList.toggle("show")
+  } else if (show) {
+    settingsPanel.classList.add("show")
+  } else {
+    settingsPanel.classList.remove("show")
+  }
+}
+
+// Initialize settings controls
+function initializeSettings() {
+  // Get elements
+  const musicToggle = document.getElementById("music-toggle")
+  const sfxToggle = document.getElementById("sfx-toggle")
+  const musicVolume = document.getElementById("music-volume")
+  const sfxVolume = document.getElementById("sfx-volume")
+
+  // Set initial values from sound manager
+  musicToggle.checked = window.soundManager.musicEnabled
+  sfxToggle.checked = window.soundManager.sfxEnabled
+  musicVolume.value = window.soundManager.musicVolume
+  sfxVolume.value = window.soundManager.sfxVolume
+
+  // Add event listeners
+  musicToggle.addEventListener("change", function () {
+    const isEnabled = this.checked
+    window.soundManager.musicEnabled = isEnabled
+    localStorage.setItem("musicEnabled", isEnabled)
+
+    if (isEnabled) {
+      window.soundManager.playMusic()
+    } else {
+      window.soundManager.stopMusic()
+    }
+  })
+
+  sfxToggle.addEventListener("change", function () {
+    const isEnabled = this.checked
+    window.soundManager.sfxEnabled = isEnabled
+    localStorage.setItem("sfxEnabled", isEnabled)
+  })
+
+  musicVolume.addEventListener("input", function () {
+    window.soundManager.setMusicVolume(this.value)
+  })
+
+  sfxVolume.addEventListener("input", function () {
+    window.soundManager.setSfxVolume(this.value)
+  })
+}
+
 // Close dropdown when clicking outside
 window.onclick = (event) => {
   if (!event.target.matches(".user-profile")) {
@@ -150,6 +204,15 @@ window.onclick = (event) => {
         openDropdown.classList.remove("show")
       }
     }
+  }
+
+  // Also close settings panel if clicking outside
+  if (
+    !event.target.closest("#settings-panel") &&
+    !event.target.matches("#settings-button") &&
+    !event.target.closest("#settings-button")
+  ) {
+    toggleSettings(false)
   }
 }
 
@@ -286,7 +349,7 @@ const THEMES = {
     buttonColor: "#ab8491",
     emojis: ["🤖", "💾", "🕶️", "🧬", "💡", "🌃", "🛸", "🚨", "📟", "🕹️", "📡", "⚡"],
   },
-  
+
   winter: {
     name: "Winter",
     background: "../rewards/images/winter-game.webp",
@@ -295,7 +358,6 @@ const THEMES = {
     buttonColor: "#64b5f6",
     emojis: ["❄️", "☃️", "🌨️", "⛷️", "🏂", "🧤", "🧣", "🌬️", "🦌", "🎿", "🌁", "🥶"],
   },
-  
 }
 
 // Get theme data
@@ -310,6 +372,11 @@ function applyTheme(themeName) {
   // Apply background
   document.body.style.backgroundImage = `url('${theme.background}')`
 
+  // Apply CSS variables
+  document.documentElement.style.setProperty("--primary-color", theme.cardColor)
+  document.documentElement.style.setProperty("--text-color", theme.textColor)
+  document.documentElement.style.setProperty("--button-color", theme.buttonColor)
+
   // Apply header colors
   const header = document.querySelector("header")
   if (header) {
@@ -322,12 +389,6 @@ function applyTheme(themeName) {
     heading.style.color = theme.textColor
   })
 
-  // Apply button colors
-  const buttons = document.querySelectorAll(".play-again-btn, .return-home")
-  buttons.forEach((button) => {
-    button.style.backgroundColor = theme.buttonColor
-  })
-
   // Apply stats container colors
   const statsContainer = document.querySelector(".stats-container")
   if (statsContainer) {
@@ -338,6 +399,13 @@ function applyTheme(themeName) {
   if (difficultyBadge) {
     difficultyBadge.style.backgroundColor = theme.cardColor
   }
+
+  // Apply control button colors
+  const controlButtons = document.querySelectorAll(".control-button")
+  controlButtons.forEach((button) => {
+    button.style.backgroundColor = theme.cardColor
+    button.querySelector(".material-symbols-outlined").style.color = theme.textColor
+  })
 
   return theme
 }
@@ -364,6 +432,25 @@ const DIFFICULTY_CONFIG = {
   },
 }
 
+// Responsive columns configuration
+const RESPONSIVE_COLUMNS = {
+  easy: {
+    default: 4, // Default columns for easy mode
+    tablet: 3, // Columns for tablet
+    mobile: 3, // Columns for mobile
+  },
+  medium: {
+    default: 6,
+    tablet: 6,
+    mobile: 3,
+  },
+  hard: {
+    default: 8,
+    tablet: 4,
+    mobile: 3,
+  },
+}
+
 // Game Variables
 let difficulty = "easy" // Default difficulty
 let cards = []
@@ -378,10 +465,27 @@ let pointsPerPair = 2 // Default for easy
 let activeTheme = "default" // Default theme
 let themeEmojis = THEMES.default.emojis // Default emojis
 
+// Declare SoundManager
+let soundManager
+
 // Initialize the game
 document.addEventListener("DOMContentLoaded", async () => {
   // Check if user is logged in
   if (!checkAuth()) return
+
+  // Initialize settings
+  initializeSettings()
+
+  // Set up settings button
+  document.getElementById("settings-button").addEventListener("click", () => toggleSettings())
+
+  // Set up restart button
+  document.getElementById("restart-game").addEventListener("click", restartGame)
+
+  // Set up home button
+  document.getElementById("home-button").addEventListener("click", () => {
+    window.location.href = "../home/index.html"
+  })
 
   // Get difficulty from URL parameter
   const urlParams = new URLSearchParams(window.location.search)
@@ -414,6 +518,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Generate the game grid
   generateGameGrid()
 
+  // Add resize event listener to handle responsive layout
+  window.addEventListener("resize", adjustGridLayout)
+
   // Initialize profile dropdown
   const profileBtn = document.getElementById("profileBtn")
   if (profileBtn) {
@@ -425,13 +532,76 @@ document.addEventListener("DOMContentLoaded", async () => {
   await getPoints()
 })
 
+// Get the appropriate number of columns based on screen width
+function getResponsiveColumns() {
+  const width = window.innerWidth
+  const columnsConfig = RESPONSIVE_COLUMNS[difficulty]
+
+  if (width <= 576) {
+    return columnsConfig.mobile
+  } else if (width <= 992) {
+    return columnsConfig.tablet
+  } else {
+    return columnsConfig.default
+  }
+}
+
+// Adjust grid layout based on screen size
+function adjustGridLayout() {
+  const gameGrid = document.getElementById("game-grid")
+  if (!gameGrid) return
+
+  const columns = getResponsiveColumns()
+
+  // Get appropriate card size based on screen width
+  let cardSize
+  const width = window.innerWidth
+
+  if (width <= 400) {
+    cardSize = 70
+  } else if (width <= 576) {
+    cardSize = 80
+  } else if (width <= 768) {
+    cardSize = 80
+  } else if (width <= 992) {
+    cardSize = 100
+  } else if (width <= 1200) {
+    cardSize = 120
+  } else {
+    cardSize = 150
+  }
+
+  // Update grid template columns
+  gameGrid.style.gridTemplateColumns = `repeat(${columns}, ${cardSize}px)`
+
+  // Update card height
+  const cardElements = document.querySelectorAll(".card")
+  cardElements.forEach((card) => {
+    card.style.height = `${cardSize}px`
+  })
+
+  // Adjust font size for card content
+  const cardFronts = document.querySelectorAll(".card-front")
+  const cardBacks = document.querySelectorAll(".card-back")
+
+  const fontSize = Math.max(cardSize * 0.4, 16) // Minimum font size of 16px
+
+  cardFronts.forEach((front) => {
+    front.style.fontSize = `${fontSize * 0.8}px`
+  })
+
+  cardBacks.forEach((back) => {
+    back.style.fontSize = `${fontSize}px`
+  })
+}
+
 // Generate the game grid based on difficulty
 function generateGameGrid() {
   const gameGrid = document.getElementById("game-grid")
   const config = DIFFICULTY_CONFIG[difficulty]
 
   // Set the grid columns based on difficulty
-  gameGrid.style.gridTemplateColumns = `repeat(${config.columns}, 150px)`
+  // gameGrid.style.gridTemplateColumns = `repeat(${config.columns}, 150px)`
 
   // Clear existing cards
   gameGrid.innerHTML = ""
@@ -486,6 +656,9 @@ function generateGameGrid() {
     back.style.backgroundColor = theme.textColor
     back.style.color = theme.cardColor
   })
+
+  // Apply responsive layout
+  adjustGridLayout()
 }
 
 // Update flip count display
@@ -497,6 +670,11 @@ function updateFlipCount() {
 // Flip card function
 function flipCard() {
   if (lockBoard || this === firstCard || flipCount >= maxFlips) return
+
+  // Play flip sound
+  if (window.soundManager) {
+    window.soundManager.playFlip()
+  }
 
   this.classList.add("flip")
   flipCount++
@@ -526,7 +704,15 @@ function flipCard() {
 function checkForMatch() {
   const isMatch = firstCard.dataset.symbol === secondCard.dataset.symbol
 
-  isMatch ? disableCards() : unflipCards()
+  if (isMatch) {
+    // Play match sound
+    if (window.soundManager) {
+      window.soundManager.playMatch()
+    }
+    disableCards()
+  } else {
+    unflipCards()
+  }
 }
 
 // Disable cards when matched
@@ -582,6 +768,15 @@ async function endGame(isWin) {
 
   // Set result message
   messageElement.textContent = `You scored ${pointsEarned} MF coins!!`
+
+  // Play win/lose sound
+  if (window.soundManager) {
+    if (isWin) {
+      window.soundManager.playWin()
+    } else {
+      window.soundManager.playLose()
+    }
+  }
 
   // Update points in the backend
   await updateUserPoints(pointsEarned)

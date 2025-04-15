@@ -16,6 +16,10 @@ body {
     height: 100vh;
     overflow: hidden;
     cursor: url('images/mouse-cursor.png'), auto;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 a {
@@ -137,7 +141,6 @@ button:hover {
     top: 50%;
     right: 10px;
     transform: translateY(-50%);
-    cursor: pointer;
     display: flex;
     align-items: center;
     height: 100%;

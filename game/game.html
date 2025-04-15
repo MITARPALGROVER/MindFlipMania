@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../game/game.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link
         href="https://fonts.googleapis.com/css2?family=Coiny&family=DancingScript:wght@400..700&family=Rowdies:wght@300;400;700&display=swap"
         rel="stylesheet">
@@ -18,7 +19,7 @@
             margin: 10px auto;
             font-family: 'Rowdies', cursive;
             font-size: 1.2rem;
-            color: #946599;
+            color: var(--text-color);
             background-color: rgba(0, 0, 0, 0.7);
             padding: 10px;
             border-radius: 10px;
@@ -59,7 +60,7 @@
 
         .play-again-btn,
         .return-home {
-            background-color: #ff9f43;
+            background-color: var(--button-color);
             color: white;
             border: none;
             border-radius: 5px;
@@ -68,15 +69,16 @@
             font-size: 1rem;
             transition: background-color 0.3s;
             margin: 5px;
+            cursor: pointer;
         }
 
         .play-again-btn:hover,
         .return-home:hover {
-            background-color: #ff7e21;
+            filter: brightness(1.1);
         }
 
         .difficulty-badge {
-            background-color: #946599;
+            background-color: var(--primary-color);
             color: white;
             padding: 5px 10px;
             border-radius: 5px;
@@ -91,9 +93,10 @@
         }
 
         .user-profile {
+            cursor: pointer;
             border-radius: 50%;
-            border: 1px solid #ffb0a1;
-            box-shadow: 2px 2px 10px #701c35;
+            border: 1px solid var(--text-color);
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
         }
 
         .profile-dropdown {
@@ -120,6 +123,7 @@
             width: 100%;
             text-align: left;
             font-family: 'Rowdies', sans-serif;
+            cursor: pointer;
         }
 
         .profile-dropdown a:hover,
@@ -138,7 +142,7 @@
         }
 
         .dropdown-points {
-            color: #946599;
+            color: var(--primary-color);
             padding: 0 10px 5px;
             text-align: center;
         }
@@ -147,11 +151,178 @@
             border-top: 1px solid #ddd;
             margin: 5px 0;
         }
+        
+        /* Game Controls */
+        .game-controls {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .control-button {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .control-button:hover {
+            transform: scale(1.1);
+        }
+        
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 24px;
+        }
+        
+        /* Settings Panel Styles */
+        .settings-panel {
+            position: fixed;
+            bottom: 80px;
+            left: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            padding: 15px;
+            width: 300px;
+            color: white;
+            font-family: 'Rowdies', sans-serif;
+            transform: translateY(20px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        .settings-panel.show {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .settings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 10px;
+        }
+        
+        .settings-header h3 {
+            margin: 0;
+        }
+        
+        .close-settings {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        .settings-section {
+            margin-bottom: 15px;
+        }
+        
+        .settings-section h4 {
+            margin: 0 0 10px 0;
+            font-size: 16px;
+        }
+        
+        .volume-control {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .volume-control span {
+            margin-right: 10px;
+            min-width: 30px;
+        }
+        
+        .volume-slider {
+            flex-grow: 1;
+            height: 5px;
+            -webkit-appearance: none;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            outline: none;
+        }
+        
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--text-color);
+            cursor: pointer;
+        }
+        
+        .toggle-control {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .toggle-slider {
+            background-color: var(--text-color);
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
     </style>
 </head>
 
 <body style="background-image: url('../game/images/gamebg.jpg');">
-    <!-- heading -->
+    <!-- Header -->
     <header>
         <a href="../home/index.html"><img src="../game/images/home-icon.png" width="30px" class="home"></a>
         <a href="../home/index.html" class="anchor-head">
@@ -180,6 +351,58 @@
         </div>
     </div>
 
+    <!-- Settings Panel -->
+    <div class="settings-panel" id="settings-panel">
+        <div class="settings-header">
+            <h3>Settings</h3>
+            <button class="close-settings" onclick="toggleSettings(false)">&times;</button>
+        </div>
+        
+        <div class="settings-section">
+            <h4>Music</h4>
+            <div class="toggle-control">
+                <span>Enable Music</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="music-toggle" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <div class="volume-control">
+                <span id="music-icon" class="material-symbols-outlined" style="font-size: 20px;">music_note</span>
+                <input type="range" min="0" max="1" step="0.1" value="0.5" class="volume-slider" id="music-volume">
+            </div>
+        </div>
+        
+        <div class="settings-section">
+            <h4>Sound Effects</h4>
+            <div class="toggle-control">
+                <span>Enable Sound Effects</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="sfx-toggle" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <div class="volume-control">
+                <span id="sfx-icon" class="material-symbols-outlined" style="font-size: 20px;">volume_up</span>
+                <input type="range" min="0" max="1" step="0.1" value="0.7" class="volume-slider" id="sfx-volume">
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Controls -->
+    <div class="game-controls"><div>
+        <button class="control-button" id="settings-button">
+            <span class="material-symbols-outlined">settings</span>
+        </button>
+        <button class="control-button" id="restart-game">
+            <span class="material-symbols-outlined">refresh</span>
+        </button>
+        <button class="control-button" id="home-button">
+            <span class="material-symbols-outlined">home</span>
+        </button>
+        
+    </div>
+
     <!-- Game Over Modal -->
     <div class="game-over-modal" id="gameOverModal">
         <div class="modal-content">
@@ -191,6 +414,7 @@
         </div>
     </div>
 
+    <script src="../home/sound-manager.js"></script>
     <script src="../game/game.js"></script>
 </body>
 
