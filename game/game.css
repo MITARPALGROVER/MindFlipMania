@@ -272,7 +272,6 @@ header {
 }
 
 .user-profile {
-  cursor: pointer;
   border-radius: 50%;
   border: 1px solid var(--text-color);
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
@@ -302,7 +301,6 @@ header {
   width: 100%;
   text-align: left;
   font-family: "Rowdies", sans-serif;
-  cursor: pointer;
 }
 
 .profile-dropdown a:hover,
@@ -352,7 +350,6 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
@@ -407,7 +404,6 @@ header {
   border: none;
   color: white;
   font-size: 20px;
-  cursor: pointer;
 }
 
 .settings-section {
@@ -503,12 +499,12 @@ header {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
-input:checked + .toggle-slider {
+input:checked+.toggle-slider {
   background-color: var(--text-color);
   border: 1px solid white;
 }
 
-input:checked + .toggle-slider:before {
+input:checked+.toggle-slider:before {
   transform: translateX(26px);
 }
 
@@ -537,7 +533,16 @@ input:checked + .toggle-slider:before {
 
   .stats-container {
     width: 90%;
-    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px auto;
+    font-family: 'Rowdies', cursive;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 400px;
   }
 
   .head {

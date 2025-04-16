@@ -312,6 +312,14 @@ header {
     height: 25px;
     margin: 10px;
   }
+  .profile-container{
+    top: 10px;
+    
+  }
+  .user-profile{
+    width: 25px;
+    height: 25px;
+  }
 }
 
 @media (max-width: 400px) {

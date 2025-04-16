@@ -48,6 +48,7 @@ button {
   font-family: "Rowdies", sans-serif;
   font-weight: 700;
   color: var(--text-color);
+  display: inline-block;
   text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
 }
 
@@ -71,7 +72,7 @@ header {
 }
 
 .user-profile {
-  cursor: pointer;
+  
   border-radius: 50%;
   border: 1px solid var(--text-color);
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
@@ -101,7 +102,7 @@ header {
   width: 100%;
   text-align: left;
   font-family: "Rowdies", sans-serif;
-  cursor: pointer;
+  
 }
 
 .profile-dropdown a:hover,
@@ -230,7 +231,7 @@ header {
   border: none;
   border-radius: 5px;
   font-family: "Rowdies", sans-serif;
-  cursor: pointer;
+  
   transition: background-color 0.3s ease;
 }
 
@@ -308,7 +309,7 @@ header {
   font-size: 28px;
   font-weight: bold;
   color: #aaa;
-  cursor: pointer;
+  
 }
 
 .close-button:hover {
@@ -531,6 +532,15 @@ header {
     width: 25px;
     height: 25px;
     margin: 10px;
+  }
+
+  .profile-container{
+    top: 10px;
+    
+  }
+  .user-profile{
+    width: 25px;
+    height: 25px;
   }
 
   .notification {
