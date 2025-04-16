@@ -4,15 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mind Flip Mania</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <meta name="title" content="MindFlip Mania - Memory Card Game" />
+    <meta name="description"
+        content="Play MindFlip Mania, a fun memory card game with exciting themes and a live leaderboard! Flip, match, and challenge your mind." />
+    <meta name="keywords"
+        content="Memory game, card game, flip game, MindFlip Mania, fun game, leaderboard, memory challenge" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Your Name" />
+    <meta property="og:title" content="MindFlip Mania - Memory Card Game" />
+    <meta property="og:description"
+        content="Challenge your brain with this flip-and-match game. Choose from amazing themes and climb the leaderboard!" />
+    <meta property="og:image" content="https://mindflipmania.vercel.app/game/images/logo.webp" />
+    <meta property="og:url" content="https://mindflipmania.vercel.app/" />
+    <title>Mind Flip Mania - Memory Card Game</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="../home/index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://kit.fontawesome.com/eac8da417c.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Coiny&family=Dancing+Script:wght@400..700&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Coiny&family=Dancing+Script:wght@400..700&family=Rowdies:wght@300;400;700&display=swap"
+        rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=volume_up,help,settings,volume_off,music_note,music_off" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=volume_up,help,settings,volume_off,music_note,music_off" />
     <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
@@ -23,16 +39,17 @@
 
 <body style="background-image: url('../home/images/theme_default.jpg');">
     <header>
-        <a href="../home/index.html"><img src="../home/images/home-icon.webp" width="30px" class="home"></a>
+        <a href="../home/index.html"><img src="../home/images/home-icon.webp" width="30px" class="home" alt = "home-button"></a>
 
-            <h1 class="head" onclick="window.location.href='../home/index.html'">Mind Flip Mania</h1>
+        <h1 class="head" onclick="window.location.href='../home/index.html'">Mind Flip Mania</h1>
 
 
-        
+
         <div class="profile-container">
-            <img src="../home/images/user-profile.webp" width="30px" class="user-profile" id="profileBtn">
+            <img src="../home/images/user-profile.webp" width="30px" class="user-profile" id="profileBtn" alt = "user-profile">
         </div>
-        <a href="../rewards/leaderboard.html" id="leaderboardLink"><img src="../home/images/leader_circular.webp" width="30px" class="leader-board"></a>
+        <a href="../rewards/leaderboard.html" id="leaderboardLink"><img src="../home/images/leader_circular.webp"
+                width="30px" class="leader-board" alt = "leaderboard"></a>
     </header>
     <div class="profile-dropdown" id="profileDropdown">
 
@@ -61,7 +78,7 @@
             <h3>Settings</h3>
             <button class="close-settings" onclick="toggleSettings(false)">&times;</button>
         </div>
-        
+
         <div class="settings-section">
             <h4>Music</h4>
             <div class="toggle-control">
@@ -76,7 +93,7 @@
                 <input type="range" min="0" max="1" step="0.1" value="0.5" class="volume-slider" id="music-volume">
             </div>
         </div>
-        
+
         <div class="settings-section">
             <h4>Sound Effects</h4>
             <div class="toggle-control">
@@ -100,12 +117,13 @@
                 <h2>How to Play Mind Flip Mania</h2>
                 <button class="close-info" onclick="toggleInfo(false)">&times;</button>
             </div>
-            
+
             <div class="info-section">
                 <h3>Game Objective</h3>
-                <p>Mind Flip Mania is a memory card game where your goal is to match all pairs of cards using the fewest flips possible.</p>
+                <p>Mind Flip Mania is a memory card game where your goal is to match all pairs of cards using the fewest
+                    flips possible.</p>
             </div>
-            
+
             <div class="info-section">
                 <h3>How to Play</h3>
                 <p>1. Click on a card to flip it and reveal its emoji.</p>
@@ -115,14 +133,14 @@
                 <p>5. Remember the positions of the cards to make matches with fewer flips.</p>
                 <p>6. The game ends when you've matched all pairs or used all your available flips.</p>
             </div>
-            
+
             <div class="info-section">
                 <h3>Difficulty Levels</h3>
                 <p><strong>Easy:</strong> 6 pairs (12 cards), 22 maximum flips</p>
                 <p><strong>Medium:</strong> 9 pairs (18 cards), 28 maximum flips</p>
                 <p><strong>Hard:</strong> 12 pairs (24 cards), 34 maximum flips</p>
             </div>
-            
+
             <div class="info-section">
                 <h3>Scoring</h3>
                 <p>You earn MF Coins for each pair you match:</p>
