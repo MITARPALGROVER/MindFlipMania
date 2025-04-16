@@ -427,7 +427,7 @@ const DIFFICULTY_CONFIG = {
   hard: {
     pairs: 12,
     columns: 8,
-    maxFlips: 34,
+    maxFlips: 40,
     pointsPerPair: 4,
   },
 }
