@@ -1,27 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaderboard - Mind Flip Mania</title>
     <link rel="stylesheet" href="../rewards/leaderboard.css">
+    <link rel="stylesheet" href="../preloader/preloader.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Coiny&family=DancingScript:wght@400..700&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Coiny&family=DancingScript:wght@400..700&family=Rowdies:wght@300;400;700&display=swap"
+        rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/eac8da417c.js" crossorigin="anonymous"></script>
 </head>
+
 <body style="background-image: url('../home/images/theme_default.jpg');">
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">Mind Flip Mania</div>
+            <div class="preloader-spinner"></div>
+            <div class="preloader-progress">
+                <div id="preloader-progress-bar" class="preloader-progress-bar"></div>
+            </div>
+            <div id="preloader-message" class="preloader-message">Loading Game...</div>
+        </div>
+    </div>
     <!-- Header -->
     <header>
-        <a href="../home/index.html"><img src="../home/images/home-icon.webp" width="30px" class="home" alt = "home-icon"></a>
+        <a href="../home/index.html"><img src="../home/images/home-icon.webp" width="30px" class="home"
+                alt="home-icon"></a>
         <a href="../home/index.html" class="anchor-head">
-                <h1 class="head">Mind Flip Mania</h1>
+            <h1 class="head">Mind Flip Mania</h1>
         </a>
-        
+
         <!-- Profile Icon and Dropdown -->
         <div class="profile-container">
-            <img src="../home/images/user-profile.webp" width="30px" class="user-profile" id="profileBtn" alt="user-profile"> 
+            <img src="../home/images/user-profile.webp" width="30px" class="user-profile" id="profileBtn"
+                alt="user-profile">
         </div>
     </header>
     <div class="profile-dropdown" id="profileDropdown">
@@ -42,15 +59,16 @@
                     <div class="player-column">Player</div>
                     <div class="points-column">MF Coins</div>
                 </div>
-                
+
                 <div id="leaderboard-rows">
-                    
+
                     <div class="loading-message">Loading leaderboard data...</div>
                 </div>
             </div>
         </div>
     </div>
-
+    <script src="../preloader/preloader.js"></script>
     <script src="../rewards/leaderboard.js"></script>
 </body>
+
 </html>
